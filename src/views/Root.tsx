@@ -1,15 +1,20 @@
-import { Header } from 'src/components/molecules/Header/Header';
-import { AppNameTitle } from 'src/components/atoms/AppNameTitle/AppNameTitle';
-import { QuizCards } from 'src/components/organisms/QuizCards/QuizCards';
-import styles from './Root.module.scss';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { MainView } from './MainView';
+import { CountriesOfEurope } from './Quizes/CountriesOfEurope';
+import { RecognizeLogo } from './Quizes/RecognizeLogo';
+import { KnowledgeOfMovies } from './Quizes/KnowledgeOfMovies';
+import { DrivingLicense } from './Quizes/DrivingLicense';
 
 export const Root = () => {
 	return (
-		<div className={styles.wrapper}>
-			<Header>
-				<AppNameTitle />
-			</Header>
-			<QuizCards />
-		</div>
+		<Router>
+			<Routes>
+				<Route path='/' element={<MainView />} />
+				<Route path='/quiz/panstwa-europy' element={<CountriesOfEurope />} />
+				<Route path='/quiz/rozpoznaj-logo' element={<RecognizeLogo />} />
+				<Route path='/quiz/znajomosc-filmow' element={<KnowledgeOfMovies />} />
+				<Route path='/quiz/prawo-jazdy' element={<DrivingLicense />} />
+			</Routes>
+		</Router>
 	);
 };

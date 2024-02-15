@@ -1,0 +1,46 @@
+@use '../../assets/variables.scss'as *;
+
+.controlsWrapper {
+    margin-bottom: 1.6rem;
+}
+
+.startButton {
+    display: inline-block;
+    width: 100%;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: $success;
+    font-size: 1.8rem;
+}
+
+.toggleMapDisplayButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.4rem;
+}
+
+.helpersWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+.mapImg {
+    width: 100%;
+}
+
+.resultsWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.result {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #E6E6E6;
+    font-size: 1.4rem;
+}

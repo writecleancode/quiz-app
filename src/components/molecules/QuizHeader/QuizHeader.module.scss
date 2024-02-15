@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    gap: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: .8rem;
+    border-radius: 8px;
+    background-color: #83B4FF;
+    font-size: 1.8rem;
+    transition: background-color .3s;
+
+    &__text {
+        display: none;
+    }
+
+    &:hover {
+        background-color: #aaccff;
+    }
+}
+
+
+.title {
+    font-size: 1.9rem;
+    font-weight: bold;
+}

@@ -7,8 +7,8 @@ export const QuizCards = () => {
 		<div className={styles.wrapper}>
 			<p className={styles.title}>Wybierz quiz:</p>
 			<div className={styles.cardsWrapper}>
-				{quizzes.map(({ title, description, backgroundURL }) => (
-					<QuizCard title={title} description={description} backgroundURL={backgroundURL} />
+				{quizzes.map(({ path, title, description, backgroundURL }) => (
+					<QuizCard key={title} path={path} title={title} description={description} backgroundURL={backgroundURL} />
 				))}
 			</div>
 		</div>
