@@ -2,8 +2,12 @@ import { quizzes } from 'src/data/quizzes';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import styles from './CountriesOfEurope.module.scss';
+import { useState } from 'react';
 
 export const CountriesOfEurope = () => {
+	// const [isQuizStarted, setQuizState] = useState(false);
+	const [isQuizStarted, setQuizState] = useState(false);
+
 	return (
 		<QuizWrapper>
 			<QuizHeader
@@ -11,9 +15,32 @@ export const CountriesOfEurope = () => {
 				description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut'
 			/>
 			<div className={styles.controlsWrapper}>
-				<button className={styles.startButton} type='button'>
-					Rozpocznij quiz
-				</button>
+				{isQuizStarted ? (
+					<div className={styles.formWrapper}>
+						<div className={styles.formField}>
+							<label className={styles.formField__label} htmlFor='country'>
+								Wpisz nazwę państwa:
+							</label>
+							<input className={styles.formField__input} type='text' id='country' name='country' />
+						</div>
+						<div className={styles.formInfo}>
+							<p className={styles.formInfo__progress}>13 / 46</p>
+							<p className={styles.formInfo__timeLeft}>1:37</p>
+						</div>
+						<div className={styles.formButtons}>
+							<button className={styles.formButtons__addMoreTimeButton} type='button'>
+								Chcę jeszcze 2 minuty!
+							</button>
+							<button className={styles.formButtons__giveUpButton} type='button'>
+								Poddaję się 🤔
+							</button>
+						</div>
+					</div>
+				) : (
+					<button className={styles.startButton} onClick={() => setQuizState(true)} type='button'>
+						Rozpocznij quiz
+					</button>
+				)}
 			</div>
 			<div className={styles.helpersWrapper}>
 				<div>
