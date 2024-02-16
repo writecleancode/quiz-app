@@ -5,7 +5,6 @@ import styles from './CountriesOfEurope.module.scss';
 import { useState } from 'react';
 
 export const CountriesOfEurope = () => {
-	// const [isQuizStarted, setQuizState] = useState(false);
 	const [isQuizStarted, setQuizState] = useState(false);
 
 	return (

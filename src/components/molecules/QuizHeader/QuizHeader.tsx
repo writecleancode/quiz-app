@@ -9,8 +9,8 @@ type QuizHeaderProps = {
 export const QuizHeader = ({ title, description }: QuizHeaderProps) => {
 	return (
 		<div className={styles.wrapper}>
-			<Link to='/' className={styles.backButton}>
-				<img src='/src/assets/icons/arrow-left.svg' alt='' />
+			<Link to='/' className={styles.backButton} aria-label='Powrót do wyboru quizów'>
+				<img src='/src/assets/icons/arrow-double-left.svg' alt='' />
 				<span className={styles.backButton__text}>Powrót</span>
 			</Link>
 			<div className={styles.textWrapper}>
