@@ -60,7 +60,7 @@
 
 .buttonsWrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: .8rem;
 
     &__previousQuestionButton,

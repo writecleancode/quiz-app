@@ -2,6 +2,7 @@ import { quizzes } from 'src/data/quizzes';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import styles from './RecognizeLogo.module.scss';
+import { ControlProgressButtons } from 'src/components/atoms/ControlProgressButtons/ControlProgressButtons';
 
 export const RecognizeLogo = () => {
 	return (
@@ -35,14 +36,15 @@ export const RecognizeLogo = () => {
 						</div>
 					</div>
 					<div className={styles.buttonsWrapper}>
-						<button className={styles.buttonsWrapper__previousQuestionButton}>
+						<ControlProgressButtons previousButton='Poprzednie pytanie' nextButton='Następne pytanie' />
+						{/* <button className={styles.buttonsWrapper__previousQuestionButton}>
 							<img src='/src/assets/icons/caret-left-fill.svg' alt='' />
 							<span>Poprzednie pytanie</span>
 						</button>
 						<button className={styles.buttonsWrapper__nextQuestionButton}>
 							<span>Następne pytanie</span>
 							<img src='/src/assets/icons/caret-right-fill.svg' alt='' />
-						</button>
+						</button> */}
 					</div>
 				</div>
 			</div>
