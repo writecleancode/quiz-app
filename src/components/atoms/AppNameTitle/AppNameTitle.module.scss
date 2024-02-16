@@ -1,6 +1,4 @@
 .h1 {
-    position: relative;
-    z-index: 10;
     margin-left: auto;
     margin-right: auto;
     padding: 0.8rem;
@@ -8,6 +6,11 @@
     font-size: 2.4rem;
     font-weight: bold;
     cursor: pointer;
+}
+
+.whiteCircleHover {
+    position: relative;
+    z-index: 10;
 
     &::before {
         content: '';
@@ -27,6 +30,21 @@
 
     &:hover::before {
         scale: 1;
+    }
+}
+
+.switchOrderHover {
+    span {
+        display: inline-block;
+        transition: translate .3s;
+    }
+
+    &:hover :first-child {
+        translate: 100%;
+    }
+
+    &:hover :last-child {
+        translate: -100%;
     }
 }
 

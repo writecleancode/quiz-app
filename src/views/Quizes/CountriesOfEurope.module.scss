@@ -41,6 +41,7 @@
     &__input {
         padding: 0.4rem 0.8rem;
         border: 1px solid #BEBEBE;
+        max-width: 200px;
         font-size: 1.4rem;
     }
 }
@@ -83,6 +84,7 @@
         border: none;
         border-radius: 8px;
         width: 100%;
+        min-width: -moz-fit-content;
         min-width: fit-content;
         transition: background-color .3s;
     }
@@ -133,4 +135,154 @@
     padding: 0.4rem 0.8rem;
     border: 1px solid #E6E6E6;
     font-size: 1.4rem;
+    text-align: center;
+}
+
+
+
+
+@media (min-width: 360px) {
+    .formButtons {
+        gap: 1.6rem;
+    }
+}
+
+@media (min-width: 370px) {
+    .formButtons {
+
+        &__addMoreTimeButton,
+        &__giveUpButton {
+            font-size: 1.4rem;
+        }
+    }
+
+    .resultsWrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: .8rem;
+    }
+}
+
+@media (min-width: 440px) {
+    .formInfo {
+        flex-direction: row;
+        margin-top: 2.5rem;
+    }
+}
+
+@media (min-width: 600px) {
+    .formField {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .formInfo {
+        margin-top: 0;
+    }
+
+    .formButtons {
+
+        &__addMoreTimeButton,
+        &__giveUpButton {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media (min-width: 860px) {
+    .helpersWrapper {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .toggleMapDisplayButton {
+        display: none;
+    }
+}
+
+@media (min-width: 900px) {
+    .startButton {
+        margin-top: -0.5rem;
+        margin-bottom: -0.5rem;
+        line-height: 1em;
+    }
+
+    .formWrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .formInfo {
+        gap: 1.6rem;
+    }
+}
+
+@media (min-width: 940px) {
+    .formWrapper {
+        gap: 2.4rem;
+    }
+
+    .formButtons {
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 1400px) {
+    .startButton {
+        margin-top: -0.3rem;
+        margin-bottom: 0;
+        line-height: normal;
+    }
+
+    .controlsWrapper {
+        margin-bottom: 2.4rem;
+    }
+
+    .formWrapper {
+        gap: 3.2rem;
+    }
+
+    .formField {
+        gap: 1.6rem;
+
+        &__label {
+            font-size: 1.7rem;
+        }
+
+        &__input {
+            padding: 0.5rem 1rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    .formInfo {
+        gap: 3.2rem;
+
+        &__progress {
+            font-size: 1.6rem;
+        }
+
+        &__timeLeft {
+            font-size: 3rem;
+        }
+    }
+
+    .formButtons {
+
+        &__addMoreTimeButton,
+        &__giveUpButton {
+            padding: 0.8rem 1.6rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    .helpersWrapper {
+        gap: 2.4rem;
+    }
+
+    .resultsWrapper {
+        column-gap: 1.6rem;
+    }
 }

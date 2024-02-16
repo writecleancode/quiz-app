@@ -9,7 +9,7 @@ type QuizWrapperProps = {
 export const QuizWrapper = ({ children }: QuizWrapperProps) => {
 	return (
 		<div className={styles.wrapper}>
-			<AppNameTitle />
+			<AppNameTitle isSpecialHover={true} />
 			<div className={styles.quizWrapper}>{children}</div>
 		</div>
 	);

@@ -32,7 +32,7 @@ export const CountriesOfEurope = () => {
 								Chcę jeszcze 2 minuty!
 							</button>
 							<button className={styles.formButtons__giveUpButton} type='button'>
-								Poddaję się 🤔
+								Poddaję się 😕
 							</button>
 						</div>
 					</div>
@@ -51,8 +51,12 @@ export const CountriesOfEurope = () => {
 					<img className={styles.mapImg} src='/src/assets/img/europe_map.jpg' alt='mapa Europy' />
 				</div>
 				<div className={styles.resultsWrapper}>
-					<p className={styles.result}>Albania</p>
-					<p className={styles.result}>Bośnia i Hercegowina</p>
+					<div className={styles.resultsWrapper__column}>
+						<p className={styles.result}>Albania</p>
+					</div>
+					<div className={styles.resultsWrapper__column}>
+						<p className={styles.result}>Bośnia i Hercegowina</p>
+					</div>
 				</div>
 			</div>
 		</QuizWrapper>
