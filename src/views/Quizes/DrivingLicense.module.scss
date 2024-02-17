@@ -1,0 +1,150 @@
+@use 'src/assets/variables.scss'as *;
+
+.textBold {
+    font-weight: bold;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    max-width: 492px;
+}
+
+.pictureWrapper {
+    aspect-ratio: 1 / 1;
+
+    &__picture {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 80%;
+    }
+}
+
+.controlsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.questionWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    &__question {
+        font-size: 1.9rem;
+    }
+
+}
+
+.answersWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    &__answer {
+        padding: 0.8rem;
+        font-size: 1.4rem;
+        border: 1px solid #757575;
+        border-radius: 2px;
+        background-color: #fff;
+        color: $text-color;
+    }
+}
+
+.instructionText {
+    color: #9A9A9A;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.buttonsWrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.8rem;
+}
+
+@media (min-width: 380px) {
+    .answersWrapper {
+        &__answer {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@media (min-width: 510px) {
+    .controlsWrapper {
+        gap: 2.4rem;
+    }
+
+    .instructionText {
+        font-size: 1.4rem;
+    }
+
+    .buttonsWrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .wrapper {
+        max-width: 592px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .wrapper {
+        max-width: 876px;
+        flex-direction: row;
+        gap: 2.4rem;
+    }
+
+    .pictureWrapper {
+        max-width: 400px;
+    }
+
+    .controlsWrapper {
+        justify-content: space-between;
+    }
+
+    .questionWrapper {
+        gap: 1.6rem;
+    }
+
+    .answersWrapper {
+        gap: 1.6rem;
+    }
+
+    .instructionText {
+        font-size: 1.5rem;
+    }
+
+    .buttonsWrapper {
+        gap: 2.4rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .wrapper {
+        max-width: 954px;
+    }
+
+    .questionWrapper {
+        &__question {
+            font-size: 2.4rem;
+        }
+    }
+
+    .answersWrapper {
+        &__answer {
+            font-size: 2rem;
+        }
+    }
+
+    .instructionText {
+        font-size: 2rem;
+    }
+}

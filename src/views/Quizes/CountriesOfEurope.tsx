@@ -1,8 +1,8 @@
-import { quizzes } from 'src/data/quizzes';
-import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
-import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
-import styles from './CountriesOfEurope.module.scss';
 import { useState } from 'react';
+import { quizzes } from 'src/data/quizzes';
+import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
+import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
+import styles from './CountriesOfEurope.module.scss';
 
 export const CountriesOfEurope = () => {
 	const [isQuizStarted, setQuizState] = useState(false);
