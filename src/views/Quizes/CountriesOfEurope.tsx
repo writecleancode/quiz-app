@@ -1,9 +1,19 @@
 import { useEffect, useState } from 'react';
 import { quizzes } from 'src/data/quizzes';
+import { countriesList } from 'src/data/coutriesOfEurope';
 import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import styles from './CountriesOfEurope.module.scss';
-import { countriesList } from 'src/data/coutriesOfEurope';
+
+type countryType = {
+	name: string;
+	isGuessed: boolean;
+};
+
+type countryListType = {
+	firstHalf: countryType[];
+	secondHalf: countryType[];
+};
 
 const initialTime = 120; // initial time in seconds
 const maxTime = 600; // max time in seconds
@@ -16,22 +26,32 @@ const timeLeftText = (secondsTotal = initialTime) => {
 	return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-const countriesStatus = countriesList.map(country => {
-	return { name: country, isGuessed: false };
-});
+const prepareCoutriesList = () => countriesList.map(country => ({ name: country, isGuessed: false }));
 
-const countries = {
-	firstHalf: countriesStatus.slice(0, Math.ceil(countriesStatus.length / 2)),
-	secondHalf: countriesStatus.slice(Math.ceil(countriesStatus.length / 2)),
+const divideCoutriesList = (coutriesToDivide: countryType[]) => {
+	return {
+		firstHalf: coutriesToDivide.slice(0, Math.ceil(coutriesToDivide.length / 2)),
+		secondHalf: coutriesToDivide.slice(Math.ceil(coutriesToDivide.length / 2)),
+	};
 };
 
 export const CountriesOfEurope = () => {
-	const [isQuizStarted, setQuizState] = useState(false);
+	const [hasQuizStarted, setQuizState] = useState(false);
 	const [inputValue, setInputValue] = useState('');
-	const [secondsTotal, setSecondsTotal] = useState(initialTime);
 	const [guessedCoutriesNumber, setGuessedCoutriesNumber] = useState(0);
+	const [secondsTotal, setSecondsTotal] = useState(initialTime);
 	const [timeLeft, setTimeLeft] = useState(timeLeftText);
 	const [isMapDisplayed, setMapDisplay] = useState(true);
+	const [coutriesWithStatus, setCountriesWithStatus] = useState<countryType[]>(prepareCoutriesList);
+	const [coutriesToDisplay, setCoutriesToDisplay] = useState<countryListType>(divideCoutriesList(coutriesWithStatus));
+
+	useEffect(() => {
+		setCountriesWithStatus(prepareCoutriesList);
+	}, [countriesList]);
+
+	useEffect(() => {
+		setCoutriesToDisplay(divideCoutriesList(coutriesWithStatus));
+	}, [coutriesWithStatus]);
 
 	const handleStartQuiz = () => {
 		setQuizState(true);
@@ -46,7 +66,7 @@ export const CountriesOfEurope = () => {
 	};
 
 	const handleCheckCoutries = () => {
-		countriesStatus.map(country => {
+		coutriesWithStatus.map(country => {
 			if (country.isGuessed === true) return;
 
 			if (country.name.toLowerCase() === inputValue.toLowerCase()) {
@@ -75,7 +95,7 @@ export const CountriesOfEurope = () => {
 	}, [inputValue]);
 
 	useEffect(() => {
-		if (guessedCoutriesNumber === countriesStatus.length) handleStopQuiz();
+		if (guessedCoutriesNumber === coutriesWithStatus.length) handleStopQuiz();
 	}, [guessedCoutriesNumber]);
 
 	return (
@@ -85,7 +105,7 @@ export const CountriesOfEurope = () => {
 				description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut'
 			/>
 			<div className={styles.controlsWrapper}>
-				{isQuizStarted ? (
+				{hasQuizStarted ? (
 					<div className={styles.formWrapper}>
 						<div className={styles.formField}>
 							<label className={styles.formField__label} htmlFor='country'>
@@ -141,7 +161,7 @@ export const CountriesOfEurope = () => {
 				</div>
 				<div className={styles.resultsWrapper}>
 					<div className={styles.resultsWrapper__column}>
-						{countries.firstHalf.map(({ name, isGuessed }) => (
+						{coutriesToDisplay.firstHalf.map(({ name, isGuessed }) => (
 							<p key={name} className={styles.result}>
 								<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
 									{name}
@@ -150,7 +170,7 @@ export const CountriesOfEurope = () => {
 						))}
 					</div>
 					<div className={styles.resultsWrapper__column}>
-						{countries.secondHalf.map(({ name, isGuessed }) => (
+						{coutriesToDisplay.secondHalf.map(({ name, isGuessed }) => (
 							<p key={name} className={styles.result}>
 								<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
 									{name}
