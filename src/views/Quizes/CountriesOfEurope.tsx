@@ -6,6 +6,7 @@ import styles from './CountriesOfEurope.module.scss';
 import { countriesList } from 'src/data/coutriesOfEurope';
 
 const initialTime = 120; // initial time in seconds
+let secondsTotal: number;
 
 const timeLeftText = (secondsTotal = initialTime) => {
 	const minutes = Math.floor(secondsTotal / 60);
@@ -27,7 +28,7 @@ export const CountriesOfEurope = () => {
 
 	const handleStartQuiz = () => {
 		setQuizState(true);
-		let secondsTotal = initialTime;
+		secondsTotal = initialTime;
 
 		const interval = setInterval(() => {
 			secondsTotal--;
@@ -35,6 +36,12 @@ export const CountriesOfEurope = () => {
 
 			if (secondsTotal <= 0) clearInterval(interval);
 		}, 1000);
+	};
+
+	const handleExtendTime = (secondsToExtend: number) => {
+		secondsTotal += secondsToExtend;
+		if (secondsTotal >= 600) secondsTotal = 600;
+		setTimeLeft(timeLeftText(secondsTotal));
 	};
 
 	return (
@@ -64,7 +71,10 @@ export const CountriesOfEurope = () => {
 							<p className={styles.formInfo__timeLeft}>{timeLeft}</p>
 						</div>
 						<div className={styles.formButtons}>
-							<button className={styles.formButtons__addMoreTimeButton} type='button'>
+							<button
+								className={styles.formButtons__addMoreTimeButton}
+								onClick={() => handleExtendTime(120)}
+								type='button'>
 								Chcę jeszcze 2 minuty!
 							</button>
 							<button className={styles.formButtons__giveUpButton} type='button'>
