@@ -69,7 +69,7 @@ export const CountriesOfEurope = () => {
 		coutriesWithStatus.map(country => {
 			if (country.isGuessed === true) return;
 
-			if (country.name.toLowerCase() === inputValue.toLowerCase()) {
+			if (country.name.toLowerCase() === inputValue.toLowerCase().trim()) {
 				country.isGuessed = true;
 				setInputValue('');
 				setGuessedCoutriesNumber(prevValue => prevValue + 1);
@@ -83,8 +83,8 @@ export const CountriesOfEurope = () => {
 
 	useEffect(() => {
 		setTimeLeft(timeLeftText(secondsTotal));
-		if (secondsTotal <= 0) handleStopQuiz();
 
+		if (secondsTotal <= 0) handleStopQuiz();
 		if (secondsTotal >= maxTime) setSecondsTotal(maxTime);
 	}, [secondsTotal]);
 
