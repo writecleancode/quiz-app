@@ -79,15 +79,13 @@ export const CountriesOfEurope = () => {
 
 	const handleEndQuiz = () => setSecondsTotal(0);
 
-	const handleExtendTime = (secondsToExtend: number) => {
-		setSecondsTotal(prevState => prevState + secondsToExtend);
-		if (secondsTotal >= maxTime) setSecondsTotal(maxTime);
-		setTimeLeft(timeLeftText(secondsTotal));
-	};
+	const handleExtendTime = (secondsToExtend: number) => setSecondsTotal(prevState => prevState + secondsToExtend);
 
 	useEffect(() => {
 		setTimeLeft(timeLeftText(secondsTotal));
 		if (secondsTotal <= 0) handleStopQuiz();
+
+		if (secondsTotal >= maxTime) setSecondsTotal(maxTime);
 	}, [secondsTotal]);
 
 	useEffect(() => {
