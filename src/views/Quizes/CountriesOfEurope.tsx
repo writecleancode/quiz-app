@@ -5,7 +5,7 @@ import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import styles from './CountriesOfEurope.module.scss';
 import { countriesList } from 'src/data/coutriesOfEurope';
 
-const initialTime = 3; // initial time in seconds
+const initialTime = 120; // initial time in seconds
 const maxTime = 600; // max time in seconds
 let interval: NodeJS.Timer;
 
@@ -17,7 +17,7 @@ const timeLeftText = (secondsTotal = initialTime) => {
 };
 
 const countriesStatus = countriesList.map(country => {
-	return { name: country, isVisible: false };
+	return { name: country, isGuessed: false };
 });
 
 const countries = {
@@ -47,15 +47,17 @@ export const CountriesOfEurope = () => {
 
 	const handleCheckCoutries = () => {
 		countriesStatus.map(country => {
-			if (country.isVisible === true) return;
+			if (country.isGuessed === true) return;
 
 			if (country.name.toLowerCase() === inputValue.toLowerCase()) {
-				country.isVisible = true;
+				country.isGuessed = true;
 				setInputValue('');
 				setGuessedCoutriesNumber(prevValue => prevValue + 1);
 			}
 		});
 	};
+
+	const handleEndQuiz = () => setSecondsTotal(0);
 
 	const handleExtendTime = (secondsToExtend: number) => {
 		setSecondsTotal(prevState => prevState + secondsToExtend);
@@ -65,7 +67,7 @@ export const CountriesOfEurope = () => {
 
 	useEffect(() => {
 		setTimeLeft(timeLeftText(secondsTotal));
-		if (secondsTotal <= 0) handleStopQuiz()
+		if (secondsTotal <= 0) handleStopQuiz();
 	}, [secondsTotal]);
 
 	useEffect(() => {
@@ -93,6 +95,7 @@ export const CountriesOfEurope = () => {
 								className={styles.formField__input}
 								value={inputValue}
 								onChange={e => setInputValue(e.target.value)}
+								disabled={secondsTotal <= 0 ? true : false}
 								type='text'
 								id='country'
 								name='country'
@@ -112,7 +115,7 @@ export const CountriesOfEurope = () => {
 								type='button'>
 								Chcę jeszcze 2 minuty!
 							</button>
-							<button className={styles.formButtons__giveUpButton} type='button'>
+							<button className={styles.formButtons__giveUpButton} onClick={handleEndQuiz} type='button'>
 								Poddaję się 😕
 							</button>
 						</div>
@@ -138,16 +141,20 @@ export const CountriesOfEurope = () => {
 				</div>
 				<div className={styles.resultsWrapper}>
 					<div className={styles.resultsWrapper__column}>
-						{countries.firstHalf.map(({ name, isVisible }) => (
+						{countries.firstHalf.map(({ name, isGuessed }) => (
 							<p key={name} className={styles.result}>
-								<span className={isVisible ? styles.visible : styles.hidden}>{name}</span>
+								<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
+									{name}
+								</span>
 							</p>
 						))}
 					</div>
 					<div className={styles.resultsWrapper__column}>
-						{countries.secondHalf.map(({ name, isVisible }) => (
+						{countries.secondHalf.map(({ name, isGuessed }) => (
 							<p key={name} className={styles.result}>
-								<span className={isVisible ? styles.visible : styles.hidden}>{name}</span>
+								<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
+									{name}
+								</span>
 							</p>
 						))}
 					</div>
