@@ -1,5 +1,15 @@
 @use '/src/assets/variables.scss'as *;
 
+@keyframes highlight {
+    from {
+        background-color: $success-light;
+    }
+
+    to {
+        background-color: inherit;
+    }
+}
+
 .controlsWrapper {
     margin-bottom: 1.6rem;
 }
@@ -136,7 +146,6 @@
 }
 
 .result {
-    padding: 0.5rem 0.8rem;
     border: 1px solid #E6E6E6;
     border-bottom: none;
     font-size: 1.4rem;
@@ -146,10 +155,25 @@
     &:last-child {
         border-bottom: 1px solid #E6E6E6;
     }
+
+    span {
+        display: inline-block;
+        padding: 0.5rem 0.8rem;
+        width: 100%;
+        height: 100%;
+    }
 }
 
+.hidden {
+    visibility: hidden;
+}
 
+.visible {
+    visibility: visible;
+    color: $text-success;
 
+    animation: highlight 1.5s forwards;
+}
 
 @media (min-width: 360px) {
     .formButtons {

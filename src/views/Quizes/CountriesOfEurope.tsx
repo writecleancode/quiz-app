@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { quizzes } from 'src/data/quizzes';
 import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import styles from './CountriesOfEurope.module.scss';
 import { countriesList } from 'src/data/coutriesOfEurope';
 
-const initialTime = 120; // initial time in seconds
-let secondsTotal: number;
+const initialTime = 3; // initial time in seconds
+const maxTime = 600; // max time in seconds
+let interval: NodeJS.Timer;
 
 const timeLeftText = (secondsTotal = initialTime) => {
 	const minutes = Math.floor(secondsTotal / 60);
@@ -15,34 +16,65 @@ const timeLeftText = (secondsTotal = initialTime) => {
 	return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
+const countriesStatus = countriesList.map(country => {
+	return { name: country, isVisible: false };
+});
+
 const countries = {
-	firstHalf: countriesList.slice(0, Math.ceil(countriesList.length / 2)),
-	secondHalf: countriesList.slice(Math.ceil(countriesList.length / 2)),
+	firstHalf: countriesStatus.slice(0, Math.ceil(countriesStatus.length / 2)),
+	secondHalf: countriesStatus.slice(Math.ceil(countriesStatus.length / 2)),
 };
 
 export const CountriesOfEurope = () => {
 	const [isQuizStarted, setQuizState] = useState(false);
 	const [inputValue, setInputValue] = useState('');
+	const [secondsTotal, setSecondsTotal] = useState(initialTime);
+	const [guessedCoutriesNumber, setGuessedCoutriesNumber] = useState(0);
 	const [timeLeft, setTimeLeft] = useState(timeLeftText);
 	const [isMapDisplayed, setMapDisplay] = useState(true);
 
 	const handleStartQuiz = () => {
 		setQuizState(true);
-		secondsTotal = initialTime;
 
-		const interval = setInterval(() => {
-			secondsTotal--;
-			setTimeLeft(timeLeftText(secondsTotal));
-
-			if (secondsTotal <= 0) clearInterval(interval);
+		interval = setInterval(() => {
+			setSecondsTotal(prevState => prevState - 1);
 		}, 1000);
 	};
 
+	const handleStopQuiz = () => {
+		clearInterval(interval);
+	};
+
+	const handleCheckCoutries = () => {
+		countriesStatus.map(country => {
+			if (country.isVisible === true) return;
+
+			if (country.name.toLowerCase() === inputValue.toLowerCase()) {
+				country.isVisible = true;
+				setInputValue('');
+				setGuessedCoutriesNumber(prevValue => prevValue + 1);
+			}
+		});
+	};
+
 	const handleExtendTime = (secondsToExtend: number) => {
-		secondsTotal += secondsToExtend;
-		if (secondsTotal >= 600) secondsTotal = 600;
+		setSecondsTotal(prevState => prevState + secondsToExtend);
+		if (secondsTotal >= maxTime) setSecondsTotal(maxTime);
 		setTimeLeft(timeLeftText(secondsTotal));
 	};
+
+	useEffect(() => {
+		setTimeLeft(timeLeftText(secondsTotal));
+		if (secondsTotal <= 0) handleStopQuiz()
+	}, [secondsTotal]);
+
+	useEffect(() => {
+		handleCheckCoutries();
+	}, [inputValue]);
+
+	useEffect(() => {
+		if (guessedCoutriesNumber === countriesStatus.length) handleStopQuiz();
+	}, [guessedCoutriesNumber]);
 
 	return (
 		<QuizWrapper>
@@ -67,13 +99,16 @@ export const CountriesOfEurope = () => {
 							/>
 						</div>
 						<div className={styles.formInfo}>
-							<p className={styles.formInfo__progress}>13 / {countriesList.length}</p>
+							<p className={styles.formInfo__progress}>
+								{guessedCoutriesNumber} / {countriesList.length}
+							</p>
 							<p className={styles.formInfo__timeLeft}>{timeLeft}</p>
 						</div>
 						<div className={styles.formButtons}>
 							<button
 								className={styles.formButtons__addMoreTimeButton}
 								onClick={() => handleExtendTime(120)}
+								disabled={secondsTotal === 0 || secondsTotal === maxTime ? true : false}
 								type='button'>
 								Chcę jeszcze 2 minuty!
 							</button>
@@ -103,16 +138,16 @@ export const CountriesOfEurope = () => {
 				</div>
 				<div className={styles.resultsWrapper}>
 					<div className={styles.resultsWrapper__column}>
-						{countries.firstHalf.map(country => (
-							<p key={country} className={styles.result}>
-								{country}
+						{countries.firstHalf.map(({ name, isVisible }) => (
+							<p key={name} className={styles.result}>
+								<span className={isVisible ? styles.visible : styles.hidden}>{name}</span>
 							</p>
 						))}
 					</div>
 					<div className={styles.resultsWrapper__column}>
-						{countries.secondHalf.map(country => (
-							<p key={country} className={styles.result}>
-								{country}
+						{countries.secondHalf.map(({ name, isVisible }) => (
+							<p key={name} className={styles.result}>
+								<span className={isVisible ? styles.visible : styles.hidden}>{name}</span>
 							</p>
 						))}
 					</div>
