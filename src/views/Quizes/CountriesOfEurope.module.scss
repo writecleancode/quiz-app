@@ -136,10 +136,16 @@
 }
 
 .result {
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 0.8rem;
     border: 1px solid #E6E6E6;
+    border-bottom: none;
     font-size: 1.4rem;
     text-align: center;
+    line-height: normal;
+
+    &:last-child {
+        border-bottom: 1px solid #E6E6E6;
+    }
 }
 
 
@@ -235,10 +241,6 @@
 }
 
 @media (min-width: 1400px) {
-    .wrapper {
-        min-width: 1012px;
-    }
-
     .startButton {
         margin-top: -0.3rem;
         margin-bottom: 0;
@@ -267,8 +269,8 @@
     }
 
     .formInfo {
-        gap: 3.2rem;
-        // gap: 2.4rem;
+        // gap: 3.2rem;
+        gap: 2.4rem;
 
         &__progress {
             font-size: 1.6rem;
