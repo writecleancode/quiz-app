@@ -42,15 +42,9 @@
 .nextQuestionButton {
     background-color: $success-dark;
 
-    &:hover {
+    &:hover:not([disabled]) {
         img {
             translate: 1rem;
-        }
-
-        &:disabled {
-            img {
-                translate: 0;
-            }
         }
     }
 }

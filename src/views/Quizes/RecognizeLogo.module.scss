@@ -41,13 +41,27 @@
     gap: 0.8rem;
 
     &__answer {
+        position: relative;
         padding: 0.8rem 1.6rem;
         border: 1px solid #757575;
         border-radius: 2px;
-        background-color: #fff;
+        background-color: transparent;
         color: $text-color;
         font-size: 1.6rem;
         text-align: center;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: 0 0 8px inset rgba(70, 70, 70, 0.4);
+            opacity: 0;
+            transition: opacity .2s;
+        }
+
+        &:hover::before {
+            opacity: 1;
+        }
     }
 }
 

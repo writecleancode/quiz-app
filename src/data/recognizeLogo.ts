@@ -224,11 +224,11 @@ export const questionsData = [
 		imageAlt: 'logo LG',
 		answers: [
 			{
-				text: 'Garry&Larry',
+				text: 'Larry&Garry',
 				isCorrectAnswer: false,
 			},
 			{
-				text: 'Larry&Garry',
+				text: 'Garry&Larry',
 				isCorrectAnswer: false,
 			},
 			{
