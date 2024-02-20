@@ -17,6 +17,10 @@
     img {
         transition: translate .2s;
     }
+
+    &:disabled {
+        opacity: .5;
+    }
 }
 
 .previousQuestionButton {
@@ -25,6 +29,12 @@
     &:hover {
         img {
             translate: -1rem;
+        }
+
+        &:disabled {
+            img {
+                translate: 0;
+            }
         }
     }
 }
@@ -35,6 +45,12 @@
     &:hover {
         img {
             translate: 1rem;
+        }
+
+        &:disabled {
+            img {
+                translate: 0;
+            }
         }
     }
 }
