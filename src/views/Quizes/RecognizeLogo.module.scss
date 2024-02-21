@@ -50,7 +50,7 @@
         font-size: 1.6rem;
         text-align: center;
 
-        &::before {
+        &::before:not([data-answer]) {
             content: '';
             position: absolute;
             inset: 0;
@@ -63,6 +63,16 @@
             opacity: 1;
         }
     }
+}
+
+[data-correct='true'] {
+    background-color: $success-light;
+    border-color: $success-dark;
+}
+
+[data-correct='false'] {
+    background-color: $error-extra-light;
+    border-color: $error;
 }
 
 .buttonsWrapper {
