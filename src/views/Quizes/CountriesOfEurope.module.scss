@@ -109,7 +109,7 @@
     &__addMoreTimeButton {
         background-color: $info;
 
-        &:hover {
+        &:hover:not([disabled]) {
             background-color: $info-light;
         }
     }
@@ -117,7 +117,7 @@
     &__giveUpButton {
         background-color: $error;
 
-        &:hover {
+        &:hover:not([disabled]) {
             background-color: $error-light;
         }
     }

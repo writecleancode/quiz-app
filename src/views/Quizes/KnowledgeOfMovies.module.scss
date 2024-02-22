@@ -36,16 +36,31 @@
     flex-direction: column;
     gap: 0.8rem;
 
-    &__answerInput {
+    &__inputWrapper {
         display: inline-block;
-        padding: 0.2rem 0.8rem;
-        font-size: inherit;
-        border: 1px solid #9e9e9e;
+        position: relative;
+        padding: 0 1rem;
         width: -moz-fit-content;
         width: fit-content;
-        color: $text-color;
-        color: inherit;
     }
+
+    &__answerInput {
+        position: absolute;
+        inset: 0;
+        padding: 0.2rem 0.8rem;
+        border: 1px solid #9e9e9e;
+        font-size: inherit;
+    }
+}
+
+[data-status='guessed'] {
+    background-color: $success-light;
+    color: $text-success;
+}
+
+[data-status='failed'] {
+    background-color: $error-extra-light;
+    color: $text-error;
 }
 
 .buttonsWrapper {

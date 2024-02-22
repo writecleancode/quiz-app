@@ -41,6 +41,7 @@ export const CountriesOfEurope = () => {
 	const [guessedCoutriesNumber, setGuessedCoutriesNumber] = useState(0);
 	const [secondsTotal, setSecondsTotal] = useState(initialTime);
 	const [timeLeft, setTimeLeft] = useState(timeLeftText);
+	const [isQuizFinished, setQuizFinished] = useState(false);
 	const [isMapDisplayed, setMapDisplay] = useState(true);
 	const [coutriesWithStatus, setCountriesWithStatus] = useState<countryType[]>(prepareCoutriesList);
 	const [coutriesToDisplay, setCoutriesToDisplay] = useState<countryListType>(divideCoutriesList(coutriesWithStatus));
@@ -77,14 +78,18 @@ export const CountriesOfEurope = () => {
 		});
 	};
 
-	const handleEndQuiz = () => setSecondsTotal(0);
+	const handleEndQuiz = () => {
+		setQuizFinished(true);
+		setSecondsTotal(0);
+		handleStopQuiz();
+	};
 
 	const handleExtendTime = (secondsToExtend: number) => setSecondsTotal(prevState => prevState + secondsToExtend);
 
 	useEffect(() => {
 		setTimeLeft(timeLeftText(secondsTotal));
 
-		if (secondsTotal <= 0) handleStopQuiz();
+		if (secondsTotal <= 0) handleEndQuiz();
 		if (secondsTotal >= maxTime) setSecondsTotal(maxTime);
 	}, [secondsTotal]);
 
@@ -93,7 +98,10 @@ export const CountriesOfEurope = () => {
 	}, [inputValue]);
 
 	useEffect(() => {
-		if (guessedCoutriesNumber === coutriesWithStatus.length) handleStopQuiz();
+		if (guessedCoutriesNumber === coutriesWithStatus.length) {
+			setQuizFinished(true);
+			handleStopQuiz();
+		}
 	}, [guessedCoutriesNumber]);
 
 	return (
@@ -129,11 +137,15 @@ export const CountriesOfEurope = () => {
 							<button
 								className={styles.formButtons__addMoreTimeButton}
 								onClick={() => handleExtendTime(120)}
-								disabled={secondsTotal === 0 || secondsTotal === maxTime ? true : false}
+								disabled={secondsTotal === 0 || secondsTotal === maxTime || isQuizFinished ? true : false}
 								type='button'>
 								Chcę jeszcze 2 minuty!
 							</button>
-							<button className={styles.formButtons__giveUpButton} onClick={handleEndQuiz} type='button'>
+							<button
+								className={styles.formButtons__giveUpButton}
+								onClick={handleEndQuiz}
+								disabled={isQuizFinished ? true : false}
+								type='button'>
 								Poddaję się 😕
 							</button>
 						</div>
