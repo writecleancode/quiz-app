@@ -109,8 +109,9 @@ export const KnowledgeOfMovies = () => {
 											className={styles.textWrapper__answerInput}
 											name={answer.id}
 											data-status={answer.hasUserGuessed ? 'guessed' : answer.hasUserfailed ? 'failed' : 'inprogress'}
-											value={inputValues.id}
+											value={answer.hasUserGuessed ? answer.correntAnswer : inputValues.id}
 											onChange={e => handleInputChange(e, answer, index)}
+											disabled={answer.hasUserGuessed ? true : false}
 										/>
 									</span>
 									{answer.textLastPart}
