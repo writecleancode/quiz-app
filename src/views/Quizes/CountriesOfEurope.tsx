@@ -35,6 +35,8 @@ const divideCoutriesList = (coutriesToDivide: countryType[]) => {
 	};
 };
 
+const coutriesNumber = countriesList.length;
+
 export const CountriesOfEurope = () => {
 	const [hasQuizStarted, setQuizState] = useState(false);
 	const [inputValue, setInputValue] = useState('');
@@ -62,8 +64,8 @@ export const CountriesOfEurope = () => {
 		}, 1000);
 	};
 
-	const handleStopQuiz = () => {
-		clearInterval(interval);
+	const handleDisplayScore = () => {
+		console.log(`Twój wynik to: ${guessedCoutriesNumber} / ${coutriesNumber}`);
 	};
 
 	const handleCheckCoutries = () => {
@@ -80,8 +82,9 @@ export const CountriesOfEurope = () => {
 
 	const handleEndQuiz = () => {
 		setQuizFinished(true);
-		setSecondsTotal(0);
-		handleStopQuiz();
+		clearInterval(interval);
+		handleDisplayScore();
+		if (guessedCoutriesNumber !== coutriesNumber) setSecondsTotal(0);
 	};
 
 	const handleExtendTime = (secondsToExtend: number) => setSecondsTotal(prevState => prevState + secondsToExtend);
@@ -89,7 +92,7 @@ export const CountriesOfEurope = () => {
 	useEffect(() => {
 		setTimeLeft(timeLeftText(secondsTotal));
 
-		if (secondsTotal <= 0) handleEndQuiz();
+		if (secondsTotal <= 0 && !isQuizFinished) handleEndQuiz();
 		if (secondsTotal >= maxTime) setSecondsTotal(maxTime);
 	}, [secondsTotal]);
 
@@ -100,7 +103,7 @@ export const CountriesOfEurope = () => {
 	useEffect(() => {
 		if (guessedCoutriesNumber === coutriesWithStatus.length) {
 			setQuizFinished(true);
-			handleStopQuiz();
+			handleEndQuiz();
 		}
 	}, [guessedCoutriesNumber]);
 
@@ -129,7 +132,7 @@ export const CountriesOfEurope = () => {
 						</div>
 						<div className={styles.formInfo}>
 							<p className={styles.formInfo__progress}>
-								{guessedCoutriesNumber} / {countriesList.length}
+								{guessedCoutriesNumber} / {coutriesNumber}
 							</p>
 							<p className={styles.formInfo__timeLeft}>{timeLeft}</p>
 						</div>

@@ -28,10 +28,11 @@ export const ControlProgressButtons = ({
 			<button
 				className={styles.nextQuestionButton}
 				onClick={() => handleChangeQuestion('next')}
-				disabled={isLastQuestion ? true : false}
+				// disabled={isLastQuestion ? true : false}
+				data-last={isLastQuestion ? 'true' : 'false'}
 				type='button'>
-				<span>{nextButton}</span>
-				<img src='/src/assets/icons/caret-right-fill.svg' alt='' />
+				<span>{isLastQuestion ? 'Zakończ Quiz' : nextButton}</span>
+				{isLastQuestion ? null : <img src='/src/assets/icons/caret-right-fill.svg' alt='' />}
 			</button>
 		</>
 	);

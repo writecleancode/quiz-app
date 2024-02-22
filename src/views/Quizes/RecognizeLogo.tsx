@@ -7,20 +7,32 @@ import { QuizProgress } from 'src/components/atoms/QuizProgress/QuizProgress';
 import { ControlProgressButtons } from 'src/components/atoms/ControlProgressButtons/ControlProgressButtons';
 import styles from './RecognizeLogo.module.scss';
 
+const maxScore = questionsData.length;
+
 export const RecognizeLogo = () => {
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [givenAnswersIndexes, setGivenAnswersIndexes] = useState<number[]>([]);
+	const [userScore, setUserScore] = useState(0);
 	const isFirstQuestion = questionIndex <= 0 ? true : false;
 	const isLastQuestion = questionIndex >= questionsData.length - 1 ? true : false;
 
-	const handleAnswersStatus = () => {
+	const handleAnswersStatus = (clickedCorrectAnswer: boolean) => {
 		if (givenAnswersIndexes.includes(questionIndex)) return;
 		setGivenAnswersIndexes(prevState => [...prevState, questionIndex]);
+
+		if (clickedCorrectAnswer) setUserScore(prevScore => prevScore + 1);
+	};
+
+	const handleDisplayScore = () => {
+		console.log(`Twój wynik to: ${userScore} / ${maxScore}`);
 	};
 
 	const handleChangeQuestion = (direction: string) => {
 		if (direction === 'next') {
-			if (isLastQuestion) return;
+			if (isLastQuestion) {
+				handleDisplayScore();
+				return;
+			}
 			setQuestionIndex(prevState => prevState + 1);
 		}
 		if (direction === 'previous') {
@@ -50,7 +62,7 @@ export const RecognizeLogo = () => {
 									key={answer.text}
 									className={styles.answersWrapper__answer}
 									data-correct={givenAnswersIndexes.includes(questionIndex) ? answer.isCorrectAnswer : ''}
-									onClick={handleAnswersStatus}
+									onClick={() => handleAnswersStatus(answer.isCorrectAnswer)}
 									type='button'>
 									{answer.text}
 								</button>

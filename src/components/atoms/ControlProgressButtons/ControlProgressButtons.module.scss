@@ -48,3 +48,12 @@
         }
     }
 }
+
+[data-last='true'] {
+    background-color: $info;
+    transition: background-color .2s;
+
+    &:hover {
+        background-color: $info-light;
+    }
+}

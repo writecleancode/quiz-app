@@ -29,10 +29,13 @@ const initialFormValues: Record<string, string> = {
 	answer5: '',
 };
 
+const maxScore = quizData.reduce((accumulator, currentMovie) => accumulator + currentMovie.answersData.length, 0);
+
 export const KnowledgeOfMovies = () => {
 	const [questionsData, setQuestionsData] = useState<never[] | questionDataType>([]);
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [inputValues, setInputValues] = useState(initialFormValues);
+	const [userScore, setUserScore] = useState(0);
 	const isFirstQuestion = questionIndex <= 0 ? true : false;
 	const isLastQuestion = questionIndex >= questionsData.length - 1 ? true : false;
 
@@ -47,7 +50,6 @@ export const KnowledgeOfMovies = () => {
 		});
 
 		if (acceptableAnswers.some(answer => answer.toLowerCase() === e.target.value.toLowerCase())) {
-			console.log('działa');
 			setQuestionsData([
 				...questionsData.slice(0, questionIndex),
 				{
@@ -60,12 +62,20 @@ export const KnowledgeOfMovies = () => {
 				},
 				...questionsData.slice(questionIndex + 1),
 			]);
+			setUserScore(prevScore => prevScore + 1);
 		}
+	};
+
+	const handleDisplayScore = () => {
+		console.log(`Twój wynik to: ${userScore} / ${maxScore}`);
 	};
 
 	const handleChangeQuestion = (direction: string) => {
 		if (direction === 'next') {
-			if (isLastQuestion) return;
+			if (isLastQuestion) {
+				handleDisplayScore();
+				return;
+			}
 			setQuestionIndex(prevState => prevState + 1);
 		}
 		if (direction === 'previous') {
