@@ -11,6 +11,7 @@ type questionDataType = {
 	title: string;
 	imageURL: string;
 	answersData: {
+		id: string;
 		textFirstPart: string;
 		textLastPart: string;
 		correntAnswer: string;
@@ -20,12 +21,12 @@ type questionDataType = {
 	}[];
 }[];
 
-const initialFormValues = {
-	0: '',
-	1: '',
-	2: '',
-	3: '',
-	4: '',
+const initialFormValues: Record<string, string> = {
+	answer1: '',
+	answer2: '',
+	answer3: '',
+	answer4: '',
+	answer5: '',
 };
 
 export const KnowledgeOfMovies = () => {
@@ -35,11 +36,31 @@ export const KnowledgeOfMovies = () => {
 	const isFirstQuestion = questionIndex <= 0 ? true : false;
 	const isLastQuestion = questionIndex >= questionsData.length - 1 ? true : false;
 
-	const handleInputChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+	const handleInputChange = (
+		e: ChangeEvent<HTMLInputElement>,
+		{ id, acceptableAnswers }: { id: string; acceptableAnswers: string[] },
+		index: number
+	) => {
 		setInputValues({
 			...inputValues,
-			[index]: e.target.value,
+			[id]: e.target.value,
 		});
+
+		if (acceptableAnswers.some(answer => answer.toLowerCase() === e.target.value.toLowerCase())) {
+			console.log('działa');
+			setQuestionsData([
+				...questionsData.slice(0, questionIndex),
+				{
+					...questionsData[questionIndex],
+					answersData: [
+						...questionsData[questionIndex].answersData.slice(0, index),
+						{ ...questionsData[questionIndex].answersData[index], hasUserGuessed: true },
+						...questionsData[questionIndex].answersData.slice(index + 1),
+					],
+				},
+				...questionsData.slice(questionIndex + 1),
+			]);
+		}
 	};
 
 	const handleChangeQuestion = (direction: string) => {
@@ -86,9 +107,10 @@ export const KnowledgeOfMovies = () => {
 										{answer.correntAnswer}
 										<input
 											className={styles.textWrapper__answerInput}
+											name={answer.id}
 											data-status={answer.hasUserGuessed ? 'guessed' : answer.hasUserfailed ? 'failed' : 'inprogress'}
-											value={inputValues[index]}
-											onChange={e => handleInputChange(e, index)}
+											value={inputValues.id}
+											onChange={e => handleInputChange(e, answer, index)}
 										/>
 									</span>
 									{answer.textLastPart}
