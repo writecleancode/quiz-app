@@ -169,7 +169,7 @@ export const CountriesOfEurope = () => {
 						<span>Pokaż mapę pomocniczą</span>
 					</button>
 					{isMapDisplayed ? (
-						<img className={styles.mapImg} src='/src/assets/img/europe_map.jpg' alt='mapa Europy' />
+						<img className={styles.mapImg} src='/src/assets/img/quiz1/europe_map.jpg' alt='mapa Europy' />
 					) : null}
 				</div>
 				<div className={styles.resultsWrapper}>
