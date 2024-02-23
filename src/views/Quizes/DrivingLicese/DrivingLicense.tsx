@@ -47,6 +47,7 @@ export const DrivingLicense = () => {
 	};
 
 	const highlightClickedAnswer = (answerIndex: number) => {
+		if (questionsData[questionIndex].hasUserAnswered) return;
 		setQuestionsData([
 			...questionsData.slice(0, questionIndex),
 			{
@@ -62,6 +63,23 @@ export const DrivingLicense = () => {
 			},
 			...questionsData.slice(questionIndex + 1),
 		]);
+	};
+
+	const handleAddPoint = () => setUserScore(prevScore => prevScore + 1);
+
+	const showCorrectAnswers = () => {
+		setQuestionsData([
+			...questionsData.slice(0, questionIndex),
+			{
+				...questionsData[questionIndex],
+				hasUserAnswered: true,
+			},
+			...questionsData.slice(questionIndex + 1),
+		]);
+
+		if (questionsData[questionIndex].answers.every(answer => answer.hasUserChecked === answer.isCorrectAnswer)) {
+			handleAddPoint();
+		}
 	};
 
 	useEffect(() => {
@@ -91,10 +109,13 @@ export const DrivingLicense = () => {
 											key={answer.text}
 											className={styles.answersWrapper__answer}
 											data-selected={answer.hasUserChecked ? 'true' : ''}
+											data-correct={questionsData[questionIndex].hasUserAnswered ? answer.isCorrectAnswer : ''}
 											onClick={() => highlightClickedAnswer(index)}
 											type='button'>
 											<img
-												data-visible={false ? 'true' : ''}
+												data-visible={
+													answer.hasUserChecked && questionsData[questionIndex].hasUserAnswered ? 'true' : ''
+												}
 												className={styles.answersWrapper__answerIcon}
 												src={answer.isCorrectAnswer ? '/src/assets/icons/check.svg' : '/src/assets/icons/x.svg'}
 												alt=''
@@ -111,7 +132,8 @@ export const DrivingLicense = () => {
 							<div className={styles.buttonsWrapper}>
 								<ControlProgressButtons
 									previousButton='Poprzednie pytanie'
-									nextButton='Następne pytanie'
+									nextButton={questionsData[questionIndex].hasUserAnswered ? 'Następne pytanie' : 'Sprawdzam!'}
+									showCorrectAnswers={showCorrectAnswers}
 									handleChangeQuestion={handleChangeQuestion}
 									isFirstQuestion={isFirstQuestion}
 									isLastQuestion={isLastQuestion}

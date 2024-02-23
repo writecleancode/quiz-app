@@ -71,6 +71,16 @@
     border-color: $info;
 }
 
+[data-correct='true'] {
+    background-color: $success-light;
+    border-color: $success-dark;
+}
+
+[data-correct='false'][data-selected='true'] {
+    background-color: $error-extra-light;
+    border-color: $error;
+}
+
 [data-visible='true'] {
     visibility: visible;
 }
