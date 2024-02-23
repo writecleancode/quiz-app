@@ -1,9 +1,9 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { MainView } from './MainView';
-import { CountriesOfEurope } from './Quizes/CountriesOfEurope';
-import { RecognizeLogo } from './Quizes/RecognizeLogo';
-import { KnowledgeOfMovies } from './Quizes/KnowledgeOfMovies';
-import { DrivingLicense } from './Quizes/DrivingLicense';
+import { CountriesOfEurope } from './Quizes/CoutriesOfEurope/CountriesOfEurope';
+import { RecognizeLogo } from './Quizes/RecognizeLogo/RecognizeLogo';
+import { KnowledgeOfMovies } from './Quizes/KnowledgeOfMovies/KnowledgeOfMovies';
+import { DrivingLicense } from './Quizes/DrivingLicese/DrivingLicense';
 
 export const Root = () => {
 	return (

@@ -45,13 +45,34 @@
     gap: 0.8rem;
 
     &__answer {
+        position: relative;
         padding: 0.8rem;
+        padding-left: calc(0.8rem + 1rem + 1.6rem);
+        padding-right: calc(0.8rem + 1rem + 1.6rem);
         font-size: 1.4rem;
         border: 1px solid #757575;
         border-radius: 2px;
         background-color: #fff;
         color: $text-color;
     }
+
+    &__answerIcon {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        translate: 0 -50%;
+        pointer-events: none;
+        visibility: hidden;
+    }
+}
+
+[data-selected='true'] {
+    background-color: $info-extra-light;
+    border-color: $info;
+}
+
+[data-visible='true'] {
+    visibility: visible;
 }
 
 .instructionText {
@@ -134,17 +155,17 @@
 
     .questionWrapper {
         &__question {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
         }
     }
 
     .answersWrapper {
         &__answer {
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
     }
 
     .instructionText {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 }
