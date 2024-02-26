@@ -84,8 +84,6 @@ export const KnowledgeOfMovies = () => {
 		}
 	};
 
-	const clearInputValues = () => setInputValues(initialFormValues);
-
 	const showCorrectAnswers = () => {
 		setQuestionsData([
 			...questionsData.slice(0, questionIndex),
@@ -110,10 +108,6 @@ export const KnowledgeOfMovies = () => {
 			showCorrectAnswers();
 		}
 	}, [questionsData]);
-
-	useEffect(() => {
-		clearInputValues();
-	}, [questionIndex]);
 
 	return (
 		<QuizWrapper>

@@ -12,6 +12,7 @@ const maxScore = questionsData.length;
 export const RecognizeLogo = () => {
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [givenAnswersIndexes, setGivenAnswersIndexes] = useState<number[]>([]);
+	const [isQuizFinished, setQuizState] = useState(false);
 	const [userScore, setUserScore] = useState(0);
 	const isFirstQuestion = questionIndex <= 0 ? true : false;
 	const isLastQuestion = questionIndex >= questionsData.length - 1 ? true : false;
@@ -25,6 +26,7 @@ export const RecognizeLogo = () => {
 
 	const handleDisplayScore = () => {
 		console.log(`Twój wynik to: ${userScore} / ${maxScore}`);
+		setQuizState(true);
 	};
 
 	const handleChangeQuestion = (direction: string) => {
@@ -61,7 +63,9 @@ export const RecognizeLogo = () => {
 								<button
 									key={answer.text}
 									className={styles.answersWrapper__answer}
-									data-correct={givenAnswersIndexes.includes(questionIndex) ? answer.isCorrectAnswer : ''}
+									data-correct={
+										givenAnswersIndexes.includes(questionIndex) || isQuizFinished ? answer.isCorrectAnswer : ''
+									}
 									onClick={() => handleAnswersStatus(answer.isCorrectAnswer)}
 									type='button'>
 									{answer.text}

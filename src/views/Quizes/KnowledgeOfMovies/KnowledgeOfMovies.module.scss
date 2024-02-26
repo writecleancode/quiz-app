@@ -34,7 +34,7 @@
 .textWrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1.2rem;
 
     &__inputWrapper {
         display: inline-block;
@@ -87,7 +87,8 @@
 
 @media (min-width:900px) {
     .wrapper {
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: auto minmax(auto, 660px);
         max-width: 962px;
     }
 
@@ -109,7 +110,8 @@
 
 @media (min-width: 1400px) {
     .wrapper {
-        max-width: 986px;
+        grid-template-columns: auto minmax(auto, 860px);
+        max-width: 1040px;
         gap: 2.4rem;
     }
 
