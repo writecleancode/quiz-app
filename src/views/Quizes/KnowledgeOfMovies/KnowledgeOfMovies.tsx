@@ -10,6 +10,7 @@ import styles from './KnowledgeOfMovies.module.scss';
 type questionDataType = {
 	title: string;
 	imageURL: string;
+	hasUserAnswered: boolean;
 	answersData: {
 		id: string;
 		textFirstPart: string;
@@ -17,7 +18,6 @@ type questionDataType = {
 		correntAnswer: string;
 		acceptableAnswers: string[];
 		hasUserGuessed: boolean;
-		hasUserfailed: boolean;
 	}[];
 }[];
 
@@ -86,9 +86,30 @@ export const KnowledgeOfMovies = () => {
 
 	const clearInputValues = () => setInputValues(initialFormValues);
 
+	const showCorrectAnswers = () => {
+		setQuestionsData([
+			...questionsData.slice(0, questionIndex),
+			{
+				...questionsData[questionIndex],
+				hasUserAnswered: true,
+			},
+			...questionsData.slice(questionIndex + 1),
+		]);
+	};
+
 	useEffect(() => {
 		setQuestionsData(quizData);
 	}, []);
+
+	useEffect(() => {
+		if (
+			questionsData.length &&
+			questionsData[questionIndex].answersData.every(answer => answer.hasUserGuessed === true) &&
+			questionsData[questionIndex].hasUserAnswered === false
+		) {
+			showCorrectAnswers();
+		}
+	}, [questionsData]);
 
 	useEffect(() => {
 		clearInputValues();
@@ -118,10 +139,16 @@ export const KnowledgeOfMovies = () => {
 										<input
 											className={styles.textWrapper__answerInput}
 											name={answer.id}
-											data-status={answer.hasUserGuessed ? 'guessed' : answer.hasUserfailed ? 'failed' : 'inprogress'}
-											value={answer.hasUserGuessed ? answer.correntAnswer : inputValues.id}
+											data-status={
+												answer.hasUserGuessed ? 'guessed' : questionsData[questionIndex].hasUserAnswered ? 'failed' : ''
+											}
+											value={
+												answer.hasUserGuessed || questionsData[questionIndex].hasUserAnswered
+													? answer.correntAnswer
+													: inputValues.id
+											}
 											onChange={e => handleInputChange(e, answer, index)}
-											disabled={answer.hasUserGuessed ? true : false}
+											disabled={answer.hasUserGuessed || questionsData[questionIndex].hasUserAnswered ? true : false}
 										/>
 									</span>
 									{answer.textLastPart}
@@ -131,7 +158,8 @@ export const KnowledgeOfMovies = () => {
 						<div className={styles.buttonsWrapper}>
 							<ControlProgressButtons
 								previousButton='Poprzedni film'
-								nextButton='Następny film'
+								nextButton={questionsData[questionIndex].hasUserAnswered ? 'Następne pytanie' : 'Sprawdzam!'}
+								showCorrectAnswers={showCorrectAnswers}
 								handleChangeQuestion={handleChangeQuestion}
 								isFirstQuestion={isFirstQuestion}
 								isLastQuestion={isLastQuestion}

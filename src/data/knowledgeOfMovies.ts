@@ -2,6 +2,7 @@ export const questionsData = [
 	{
 		title: 'Iron Man',
 		imageURL: '/src/assets/img/quiz3/iron_man.jpg',
+		hasUserAnswered: false,
 		answersData: [
 			{
 				id: 'answer1',
@@ -10,7 +11,6 @@ export const questionsData = [
 				correntAnswer: 'Stark',
 				acceptableAnswers: ['Stark'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer2',
@@ -19,7 +19,6 @@ export const questionsData = [
 				correntAnswer: 'broni',
 				acceptableAnswers: ['broni'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer3',
@@ -28,7 +27,6 @@ export const questionsData = [
 				correntAnswer: 'czerwonego',
 				acceptableAnswers: ['czerwonego', 'czerwony', 'bordowego', 'bordowy'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer4',
@@ -37,7 +35,6 @@ export const questionsData = [
 				correntAnswer: 'T.A.R.C.Z.A',
 				acceptableAnswers: ['T.A.R.C.Z.A', 'TARCZA', 'S.H.I.E.L.D', 'SHIELD'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer5',
@@ -46,13 +43,13 @@ export const questionsData = [
 				correntAnswer: 'Marvela',
 				acceptableAnswers: ['Marvela', 'Marvel', 'Marwela', 'Marwel'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 		],
 	},
 	{
 		title: 'Harry Potter',
 		imageURL: '/src/assets/img/quiz3/harry_potter.jpg',
+		hasUserAnswered: false,
 		answersData: [
 			{
 				id: 'answer1',
@@ -61,7 +58,6 @@ export const questionsData = [
 				correntAnswer: 'Hogwarcie',
 				acceptableAnswers: ['Hogwarcie', 'Hogwart', 'Hogvarcie', 'Hogvart'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer2',
@@ -70,7 +66,6 @@ export const questionsData = [
 				correntAnswer: 'Albus',
 				acceptableAnswers: ['Albus'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer3',
@@ -79,7 +74,6 @@ export const questionsData = [
 				correntAnswer: 'Gryffindor',
 				acceptableAnswers: ['Gryffindor', 'Gryfindor'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer4',
@@ -88,7 +82,6 @@ export const questionsData = [
 				correntAnswer: 'sowa',
 				acceptableAnswers: ['sowa'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer5',
@@ -97,13 +90,13 @@ export const questionsData = [
 				correntAnswer: 'Black',
 				acceptableAnswers: ['Black', 'Blak'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 		],
 	},
 	{
 		title: 'Shrek',
 		imageURL: '/src/assets/img/quiz3/shrek.jpg',
+		hasUserAnswered: false,
 		answersData: [
 			{
 				id: 'answer1',
@@ -112,7 +105,6 @@ export const questionsData = [
 				correntAnswer: 'ogrem',
 				acceptableAnswers: ['ogrem'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer2',
@@ -121,7 +113,6 @@ export const questionsData = [
 				correntAnswer: 'Fionę',
 				acceptableAnswers: ['Fionę', 'Fione', 'Fiona'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer3',
@@ -130,7 +121,6 @@ export const questionsData = [
 				correntAnswer: 'osioł',
 				acceptableAnswers: ['osioł'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer4',
@@ -148,7 +138,6 @@ export const questionsData = [
 					'Zasiedmio gurogrud',
 				],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer5',
@@ -157,13 +146,13 @@ export const questionsData = [
 				correntAnswer: 'Kot',
 				acceptableAnswers: ['Kot'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 		],
 	},
 	{
 		title: 'Władca Pierścieni',
 		imageURL: '/src/assets/img/quiz3/the_lord_of_the_rings.jpg',
+		hasUserAnswered: false,
 		answersData: [
 			{
 				id: 'answer1',
@@ -172,7 +161,6 @@ export const questionsData = [
 				correntAnswer: 'Frodo',
 				acceptableAnswers: ['Frodo'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer2',
@@ -181,7 +169,6 @@ export const questionsData = [
 				correntAnswer: 'elf',
 				acceptableAnswers: ['elf'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer3',
@@ -190,7 +177,6 @@ export const questionsData = [
 				correntAnswer: 'łuk',
 				acceptableAnswers: ['łuk'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer4',
@@ -199,7 +185,6 @@ export const questionsData = [
 				correntAnswer: 'Gandalf',
 				acceptableAnswers: ['Gandalf'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer5',
@@ -208,13 +193,13 @@ export const questionsData = [
 				correntAnswer: 'Mordor',
 				acceptableAnswers: ['Mordor'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 		],
 	},
 	{
 		title: 'Gwiezdne Wojny',
 		imageURL: '/src/assets/img/quiz3/star_wars.jpg',
+		hasUserAnswered: false,
 		answersData: [
 			{
 				id: 'answer1',
@@ -223,7 +208,6 @@ export const questionsData = [
 				correntAnswer: 'Jedi',
 				acceptableAnswers: ['Jedi', 'Dżedaj', 'Dzedaj'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer2',
@@ -232,7 +216,6 @@ export const questionsData = [
 				correntAnswer: 'mieczami',
 				acceptableAnswers: ['mieczami', 'mieczem'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer3',
@@ -241,7 +224,6 @@ export const questionsData = [
 				correntAnswer: 'Vader',
 				acceptableAnswers: ['Vader', 'Wader', 'Wejder', 'Vejder'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer4',
@@ -250,7 +232,6 @@ export const questionsData = [
 				correntAnswer: 'Padmé',
 				acceptableAnswers: ['Padmé', 'Padme'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 			{
 				id: 'answer5',
@@ -259,7 +240,6 @@ export const questionsData = [
 				correntAnswer: 'zielonego',
 				acceptableAnswers: ['zielonego', 'zielony'],
 				hasUserGuessed: false,
-				hasUserfailed: false,
 			},
 		],
 	},
