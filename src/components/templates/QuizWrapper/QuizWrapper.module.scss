@@ -1,6 +1,12 @@
 .wrapper {
     padding-left: 0.8rem;
     padding-right: 0.8rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .quizWrapper {
