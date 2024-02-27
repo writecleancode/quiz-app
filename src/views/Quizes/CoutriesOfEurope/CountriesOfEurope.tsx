@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useModal } from 'src/hooks/useModal';
 import { quizzes } from 'src/data/quizzes';
 import { countriesList } from 'src/data/coutriesOfEurope';
 import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
+import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
 import styles from './CountriesOfEurope.module.scss';
 
 type countryType = {
@@ -47,6 +49,7 @@ export const CountriesOfEurope = () => {
 	const [isMapDisplayed, setMapDisplay] = useState(true);
 	const [coutriesWithStatus, setCountriesWithStatus] = useState<countryType[]>(prepareCoutriesList);
 	const [coutriesToDisplay, setCoutriesToDisplay] = useState<countryListType>(divideCoutriesList(coutriesWithStatus));
+	const { isModalOpen, handleDisplayScore, handleCloseModal } = useModal();
 
 	useEffect(() => {
 		setCountriesWithStatus(prepareCoutriesList);
@@ -62,10 +65,6 @@ export const CountriesOfEurope = () => {
 		interval = setInterval(() => {
 			setSecondsTotal(prevState => prevState - 1);
 		}, 1000);
-	};
-
-	const handleDisplayScore = () => {
-		console.log(`Twój wynik to: ${guessedCoutriesNumber} / ${coutriesNumber}`);
 	};
 
 	const handleCheckCoutries = () => {
@@ -108,91 +107,99 @@ export const CountriesOfEurope = () => {
 	}, [guessedCoutriesNumber]);
 
 	return (
-		<QuizWrapper>
-			<QuizHeader
-				title={quizzes[0].title}
-				description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut'
+		<>
+			<QuizWrapper>
+				<QuizHeader
+					title={quizzes[0].title}
+					description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut'
+				/>
+				<div className={styles.controlsWrapper}>
+					{hasQuizStarted ? (
+						<div className={styles.formWrapper}>
+							<div className={styles.formField}>
+								<label className={styles.formField__label} htmlFor='country'>
+									Wpisz nazwę państwa:
+								</label>
+								<input
+									className={styles.formField__input}
+									value={inputValue}
+									onChange={e => setInputValue(e.target.value)}
+									disabled={secondsTotal <= 0 ? true : false}
+									type='text'
+									id='country'
+									name='country'
+								/>
+							</div>
+							<div className={styles.formInfo}>
+								<p className={styles.formInfo__progress}>
+									{guessedCoutriesNumber} / {coutriesNumber}
+								</p>
+								<p className={styles.formInfo__timeLeft}>{timeLeft}</p>
+							</div>
+							<div className={styles.formButtons}>
+								<button
+									className={styles.formButtons__addMoreTimeButton}
+									onClick={() => handleExtendTime(120)}
+									disabled={secondsTotal === 0 || secondsTotal === maxTime || isQuizFinished ? true : false}
+									type='button'>
+									Chcę jeszcze 2 minuty!
+								</button>
+								<button
+									className={styles.formButtons__giveUpButton}
+									onClick={handleEndQuiz}
+									disabled={isQuizFinished ? true : false}
+									type='button'>
+									Poddaję się 😕
+								</button>
+							</div>
+						</div>
+					) : (
+						<button className={styles.startButton} onClick={handleStartQuiz} type='button'>
+							Rozpocznij quiz
+						</button>
+					)}
+				</div>
+				<div className={styles.helpersWrapper}>
+					<div>
+						<button
+							className={styles.toggleMapDisplayButton}
+							onClick={() => setMapDisplay(prevState => !prevState)}
+							type='button'>
+							<img src='/src/assets/icons/map.svg' alt='' />
+							<span>Pokaż mapę pomocniczą</span>
+						</button>
+						{isMapDisplayed ? (
+							<img className={styles.mapImg} src='/src/assets/img/quiz1/europe_map.jpg' alt='mapa Europy' />
+						) : null}
+					</div>
+					<div className={styles.resultsWrapper}>
+						<div className={styles.resultsWrapper__column}>
+							{coutriesToDisplay.firstHalf.map(({ name, isGuessed }) => (
+								<p key={name} className={styles.result}>
+									<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
+										{name}
+									</span>
+								</p>
+							))}
+						</div>
+						<div className={styles.resultsWrapper__column}>
+							{coutriesToDisplay.secondHalf.map(({ name, isGuessed }) => (
+								<p key={name} className={styles.result}>
+									<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
+										{name}
+									</span>
+								</p>
+							))}
+						</div>
+					</div>
+				</div>
+			</QuizWrapper>
+			<ScoreModal
+				isOpen={isModalOpen}
+				userScore={guessedCoutriesNumber}
+				totalScore={coutriesNumber}
+				handleCloseModal={handleCloseModal}
 			/>
-			<div className={styles.controlsWrapper}>
-				{hasQuizStarted ? (
-					<div className={styles.formWrapper}>
-						<div className={styles.formField}>
-							<label className={styles.formField__label} htmlFor='country'>
-								Wpisz nazwę państwa:
-							</label>
-							<input
-								className={styles.formField__input}
-								value={inputValue}
-								onChange={e => setInputValue(e.target.value)}
-								disabled={secondsTotal <= 0 ? true : false}
-								type='text'
-								id='country'
-								name='country'
-							/>
-						</div>
-						<div className={styles.formInfo}>
-							<p className={styles.formInfo__progress}>
-								{guessedCoutriesNumber} / {coutriesNumber}
-							</p>
-							<p className={styles.formInfo__timeLeft}>{timeLeft}</p>
-						</div>
-						<div className={styles.formButtons}>
-							<button
-								className={styles.formButtons__addMoreTimeButton}
-								onClick={() => handleExtendTime(120)}
-								disabled={secondsTotal === 0 || secondsTotal === maxTime || isQuizFinished ? true : false}
-								type='button'>
-								Chcę jeszcze 2 minuty!
-							</button>
-							<button
-								className={styles.formButtons__giveUpButton}
-								onClick={handleEndQuiz}
-								disabled={isQuizFinished ? true : false}
-								type='button'>
-								Poddaję się 😕
-							</button>
-						</div>
-					</div>
-				) : (
-					<button className={styles.startButton} onClick={handleStartQuiz} type='button'>
-						Rozpocznij quiz
-					</button>
-				)}
-			</div>
-			<div className={styles.helpersWrapper}>
-				<div>
-					<button
-						className={styles.toggleMapDisplayButton}
-						onClick={() => setMapDisplay(prevState => !prevState)}
-						type='button'>
-						<img src='/src/assets/icons/map.svg' alt='' />
-						<span>Pokaż mapę pomocniczą</span>
-					</button>
-					{isMapDisplayed ? (
-						<img className={styles.mapImg} src='/src/assets/img/quiz1/europe_map.jpg' alt='mapa Europy' />
-					) : null}
-				</div>
-				<div className={styles.resultsWrapper}>
-					<div className={styles.resultsWrapper__column}>
-						{coutriesToDisplay.firstHalf.map(({ name, isGuessed }) => (
-							<p key={name} className={styles.result}>
-								<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
-									{name}
-								</span>
-							</p>
-						))}
-					</div>
-					<div className={styles.resultsWrapper__column}>
-						{coutriesToDisplay.secondHalf.map(({ name, isGuessed }) => (
-							<p key={name} className={styles.result}>
-								<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
-									{name}
-								</span>
-							</p>
-						))}
-					</div>
-				</div>
-			</div>
-		</QuizWrapper>
+		</>
 	);
 };

@@ -1,0 +1,92 @@
+@use '/src/assets/variables.scss'as *;
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    padding: 2.4rem;
+    border: 1px solid #666;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+    width: fit-content;
+    background-color: #fff;
+    text-align: center;
+}
+
+.scoreTitle {
+    font-size: 1.8rem;
+}
+
+.scoreText {
+    margin-top: 0.8rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.scorePercentage {
+    font-size: 1.4rem;
+    color: #666;
+}
+
+.buttonsWrapper {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.6rem;
+}
+
+.backButton,
+.closeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    padding: .8rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    color: inherit;
+    line-height: inherit;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        translate: 0 1px;
+    }
+}
+
+.backButton {
+    background-color: $info;
+}
+
+.closeButton {
+    background-color: $success;
+}
+
+@media (min-width: 1400px) {
+    .wrapper {
+        padding: 4rem;
+    }
+
+    .scoreTitle {
+        font-size: 2.4rem;
+    }
+
+    .scoreText {
+        margin-top: 1.6rem;
+        font-size: 3rem;
+    }
+
+    .buttonsWrapper {
+        gap: 1.6rem;
+        margin-top: 2.4rem;
+    }
+
+    .backButton,
+    .closeButton {
+        font-size: 1.8rem;
+
+        img {
+            translate: 0 2px;
+        }
+    }
+}
