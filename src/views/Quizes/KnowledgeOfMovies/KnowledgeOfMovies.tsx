@@ -6,10 +6,11 @@ import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import { QuizProgress } from 'src/components/atoms/QuizProgress/QuizProgress';
 import { ControlProgressButtons } from 'src/components/atoms/ControlProgressButtons/ControlProgressButtons';
+import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
 import styles from './KnowledgeOfMovies.module.scss';
 
-type questionDataType = {
+type questionsDataType = {
 	title: string;
 	imageURL: string;
 	hasUserAnswered: boolean;
@@ -34,7 +35,7 @@ const initialFormValues: Record<string, string> = {
 const maxScore = quizData.reduce((accumulator, currentMovie) => accumulator + currentMovie.answersData.length, 0);
 
 export const KnowledgeOfMovies = () => {
-	const [questionsData, setQuestionsData] = useState<never[] | questionDataType>([]);
+	const [questionsData, setQuestionsData] = useState<never[] | questionsDataType>([]);
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [inputValues, setInputValues] = useState(initialFormValues);
 	const [userScore, setUserScore] = useState(0);
@@ -114,10 +115,10 @@ export const KnowledgeOfMovies = () => {
 
 	return (
 		<>
-			<QuizWrapper>
-				<QuizHeader title={quizzes[2].title} description={quizzes[2].description} />
-				<QuizProgress text={`${questionIndex + 1} / ${questionsData.length}`} />
-				{questionsData.length ? (
+			{questionsData.length ? (
+				<QuizWrapper>
+					<QuizHeader title={quizzes[2].title} description={quizzes[2].description} />
+					<QuizProgress text={`${questionIndex + 1} / ${questionsData.length}`} />
 					<div className={styles.wrapper}>
 						<div className={styles.pictureWrapper}>
 							<img
@@ -167,8 +168,10 @@ export const KnowledgeOfMovies = () => {
 							</div>
 						</div>
 					</div>
-				) : null}
-			</QuizWrapper>
+				</QuizWrapper>
+			) : (
+				<LoadingGif />
+			)}
 			<ScoreModal
 				isOpen={isModalOpen}
 				userScore={userScore}

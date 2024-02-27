@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useModal } from 'src/hooks/useModal';
 import { quizzes } from 'src/data/quizzes';
-import { countriesList } from 'src/data/coutriesOfEurope';
+import { countriesList as quizData } from 'src/data/coutriesOfEurope';
 import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
+import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
 import styles from './CountriesOfEurope.module.scss';
 
@@ -28,7 +29,7 @@ const timeLeftText = (secondsTotal = initialTime) => {
 	return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-const prepareCoutriesList = () => countriesList.map(country => ({ name: country, isGuessed: false }));
+const prepareCoutriesList = () => quizData.map(country => ({ name: country, isGuessed: false }));
 
 const divideCoutriesList = (coutriesToDivide: countryType[]) => {
 	return {
@@ -37,9 +38,10 @@ const divideCoutriesList = (coutriesToDivide: countryType[]) => {
 	};
 };
 
-const coutriesNumber = countriesList.length;
+const coutriesNumber = quizData.length;
 
 export const CountriesOfEurope = () => {
+	const [countriesList, setCountriesList] = useState<never[] | string[]>([]);
 	const [hasQuizStarted, setQuizState] = useState(false);
 	const [inputValue, setInputValue] = useState('');
 	const [guessedCoutriesNumber, setGuessedCoutriesNumber] = useState(0);
@@ -50,6 +52,10 @@ export const CountriesOfEurope = () => {
 	const [coutriesWithStatus, setCountriesWithStatus] = useState<countryType[]>(prepareCoutriesList);
 	const [coutriesToDisplay, setCoutriesToDisplay] = useState<countryListType>(divideCoutriesList(coutriesWithStatus));
 	const { isModalOpen, handleDisplayScore, handleCloseModal } = useModal();
+
+	useEffect(() => {
+		setCountriesList(quizData);
+	}, []);
 
 	useEffect(() => {
 		setCountriesWithStatus(prepareCoutriesList);
@@ -108,92 +114,96 @@ export const CountriesOfEurope = () => {
 
 	return (
 		<>
-			<QuizWrapper>
-				<QuizHeader
-					title={quizzes[0].title}
-					description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut'
-				/>
-				<div className={styles.controlsWrapper}>
-					{hasQuizStarted ? (
-						<div className={styles.formWrapper}>
-							<div className={styles.formField}>
-								<label className={styles.formField__label} htmlFor='country'>
-									Wpisz nazwę państwa:
-								</label>
-								<input
-									className={styles.formField__input}
-									value={inputValue}
-									onChange={e => setInputValue(e.target.value)}
-									disabled={secondsTotal <= 0 ? true : false}
-									type='text'
-									id='country'
-									name='country'
-								/>
+			{countriesList.length ? (
+				<QuizWrapper>
+					<QuizHeader
+						title={quizzes[0].title}
+						description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut'
+					/>
+					<div className={styles.controlsWrapper}>
+						{hasQuizStarted ? (
+							<div className={styles.formWrapper}>
+								<div className={styles.formField}>
+									<label className={styles.formField__label} htmlFor='country'>
+										Wpisz nazwę państwa:
+									</label>
+									<input
+										className={styles.formField__input}
+										value={inputValue}
+										onChange={e => setInputValue(e.target.value)}
+										disabled={secondsTotal <= 0 ? true : false}
+										type='text'
+										id='country'
+										name='country'
+									/>
+								</div>
+								<div className={styles.formInfo}>
+									<p className={styles.formInfo__progress}>
+										{guessedCoutriesNumber} / {coutriesNumber}
+									</p>
+									<p className={styles.formInfo__timeLeft}>{timeLeft}</p>
+								</div>
+								<div className={styles.formButtons}>
+									<button
+										className={styles.formButtons__addMoreTimeButton}
+										onClick={() => handleExtendTime(120)}
+										disabled={secondsTotal === 0 || secondsTotal === maxTime || isQuizFinished ? true : false}
+										type='button'>
+										Chcę jeszcze 2 minuty!
+									</button>
+									<button
+										className={styles.formButtons__giveUpButton}
+										onClick={handleEndQuiz}
+										disabled={isQuizFinished ? true : false}
+										type='button'>
+										Poddaję się 😕
+									</button>
+								</div>
 							</div>
-							<div className={styles.formInfo}>
-								<p className={styles.formInfo__progress}>
-									{guessedCoutriesNumber} / {coutriesNumber}
-								</p>
-								<p className={styles.formInfo__timeLeft}>{timeLeft}</p>
-							</div>
-							<div className={styles.formButtons}>
-								<button
-									className={styles.formButtons__addMoreTimeButton}
-									onClick={() => handleExtendTime(120)}
-									disabled={secondsTotal === 0 || secondsTotal === maxTime || isQuizFinished ? true : false}
-									type='button'>
-									Chcę jeszcze 2 minuty!
-								</button>
-								<button
-									className={styles.formButtons__giveUpButton}
-									onClick={handleEndQuiz}
-									disabled={isQuizFinished ? true : false}
-									type='button'>
-									Poddaję się 😕
-								</button>
-							</div>
-						</div>
-					) : (
-						<button className={styles.startButton} onClick={handleStartQuiz} type='button'>
-							Rozpocznij quiz
-						</button>
-					)}
-				</div>
-				<div className={styles.helpersWrapper}>
-					<div>
-						<button
-							className={styles.toggleMapDisplayButton}
-							onClick={() => setMapDisplay(prevState => !prevState)}
-							type='button'>
-							<img src='/src/assets/icons/map.svg' alt='' />
-							<span>Pokaż mapę pomocniczą</span>
-						</button>
-						{isMapDisplayed ? (
-							<img className={styles.mapImg} src='/src/assets/img/quiz1/europe_map.jpg' alt='mapa Europy' />
-						) : null}
+						) : (
+							<button className={styles.startButton} onClick={handleStartQuiz} type='button'>
+								Rozpocznij quiz
+							</button>
+						)}
 					</div>
-					<div className={styles.resultsWrapper}>
-						<div className={styles.resultsWrapper__column}>
-							{coutriesToDisplay.firstHalf.map(({ name, isGuessed }) => (
-								<p key={name} className={styles.result}>
-									<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
-										{name}
-									</span>
-								</p>
-							))}
+					<div className={styles.helpersWrapper}>
+						<div>
+							<button
+								className={styles.toggleMapDisplayButton}
+								onClick={() => setMapDisplay(prevState => !prevState)}
+								type='button'>
+								<img src='/src/assets/icons/map.svg' alt='' />
+								<span>Pokaż mapę pomocniczą</span>
+							</button>
+							{isMapDisplayed ? (
+								<img className={styles.mapImg} src='/src/assets/img/quiz1/europe_map.jpg' alt='mapa Europy' />
+							) : null}
 						</div>
-						<div className={styles.resultsWrapper__column}>
-							{coutriesToDisplay.secondHalf.map(({ name, isGuessed }) => (
-								<p key={name} className={styles.result}>
-									<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
-										{name}
-									</span>
-								</p>
-							))}
+						<div className={styles.resultsWrapper}>
+							<div className={styles.resultsWrapper__column}>
+								{coutriesToDisplay.firstHalf.map(({ name, isGuessed }) => (
+									<p key={name} className={styles.result}>
+										<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
+											{name}
+										</span>
+									</p>
+								))}
+							</div>
+							<div className={styles.resultsWrapper__column}>
+								{coutriesToDisplay.secondHalf.map(({ name, isGuessed }) => (
+									<p key={name} className={styles.result}>
+										<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
+											{name}
+										</span>
+									</p>
+								))}
+							</div>
 						</div>
 					</div>
-				</div>
-			</QuizWrapper>
+				</QuizWrapper>
+			) : (
+				<LoadingGif />
+			)}
 			<ScoreModal
 				isOpen={isModalOpen}
 				userScore={guessedCoutriesNumber}

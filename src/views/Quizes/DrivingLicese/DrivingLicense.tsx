@@ -6,10 +6,11 @@ import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import { QuizProgress } from 'src/components/atoms/QuizProgress/QuizProgress';
 import { ControlProgressButtons } from 'src/components/atoms/ControlProgressButtons/ControlProgressButtons';
+import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
 import styles from './DrivingLicense.module.scss';
 
-type quizDataType = {
+type questionsDataType = {
 	title: string;
 	imageURL: string;
 	imageAlt: string;
@@ -24,7 +25,7 @@ type quizDataType = {
 const maxScore = quizData.length;
 
 export const DrivingLicense = () => {
-	const [questionsData, setQuestionsData] = useState<never[] | quizDataType>([]);
+	const [questionsData, setQuestionsData] = useState<never[] | questionsDataType>([]);
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [userScore, setUserScore] = useState(0);
 	const isFirstQuestion = questionIndex <= 0 ? true : false;
@@ -87,11 +88,11 @@ export const DrivingLicense = () => {
 
 	return (
 		<>
-			<QuizWrapper>
-				<div className={styles.container}>
-					<QuizHeader title={quizzes[3].title} description={quizzes[3].description} />
-					<QuizProgress text={`${questionIndex + 1} / ${maxScore}`} />
-					{questionsData.length ? (
+			{questionsData.length ? (
+				<QuizWrapper>
+					<div className={styles.container}>
+						<QuizHeader title={quizzes[3].title} description={quizzes[3].description} />
+						<QuizProgress text={`${questionIndex + 1} / ${maxScore}`} />
 						<div className={styles.wrapper}>
 							<div className={styles.pictureWrapper}>
 								<img
@@ -139,9 +140,11 @@ export const DrivingLicense = () => {
 								</div>
 							</div>
 						</div>
-					) : null}
-				</div>
-			</QuizWrapper>
+					</div>
+				</QuizWrapper>
+			) : (
+				<LoadingGif />
+			)}
 			<ScoreModal
 				isOpen={isModalOpen}
 				userScore={userScore}
