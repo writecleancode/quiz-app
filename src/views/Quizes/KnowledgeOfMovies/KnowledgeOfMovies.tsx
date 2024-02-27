@@ -129,33 +129,31 @@ export const KnowledgeOfMovies = () => {
 						<div className={styles.controlsWrapper}>
 							<p className={styles.title}>{questionsData[questionIndex].title}</p>
 							<div className={styles.textWrapper}>
-								{questionsData[questionIndex].answersData.map((answer, index) => (
-									<p key={answer.correntAnswer} className={styles.textWrapper__text}>
-										{answer.textFirstPart}
-										<span className={styles.textWrapper__inputWrapper}>
-											{answer.correntAnswer}
-											<input
-												className={styles.textWrapper__answerInput}
-												name={answer.id}
-												data-status={
-													answer.hasUserGuessed
-														? 'guessed'
-														: questionsData[questionIndex].hasUserAnswered
-														? 'failed'
-														: ''
-												}
-												value={
-													answer.hasUserGuessed || questionsData[questionIndex].hasUserAnswered
-														? answer.correntAnswer
-														: inputValues.id
-												}
-												onChange={e => handleInputChange(e, answer, index)}
-												disabled={answer.hasUserGuessed || questionsData[questionIndex].hasUserAnswered ? true : false}
-											/>
-										</span>
-										{answer.textLastPart}
-									</p>
-								))}
+								{questionsData[questionIndex].answersData.map(
+									({ correntAnswer, textFirstPart, textLastPart, id, hasUserGuessed, acceptableAnswers }, index) => (
+										<p key={correntAnswer} className={styles.textWrapper__text}>
+											{textFirstPart}
+											<span className={styles.textWrapper__inputWrapper}>
+												{correntAnswer}
+												<input
+													className={styles.textWrapper__answerInput}
+													name={id}
+													data-status={
+														hasUserGuessed ? 'guessed' : questionsData[questionIndex].hasUserAnswered ? 'failed' : ''
+													}
+													value={
+														hasUserGuessed || questionsData[questionIndex].hasUserAnswered
+															? correntAnswer
+															: inputValues.id
+													}
+													onChange={e => handleInputChange(e, { id, acceptableAnswers }, index)}
+													disabled={hasUserGuessed || questionsData[questionIndex].hasUserAnswered ? true : false}
+												/>
+											</span>
+											{textLastPart}
+										</p>
+									)
+								)}
 							</div>
 							<div className={styles.buttonsWrapper}>
 								<ControlProgressButtons

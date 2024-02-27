@@ -104,23 +104,21 @@ export const DrivingLicense = () => {
 								<div className={styles.questionWrapper}>
 									<p className={styles.questionWrapper__question}>{questionsData[questionIndex].title}</p>
 									<div className={styles.answersWrapper}>
-										{questionsData[questionIndex].answers.map((answer, index) => (
+										{questionsData[questionIndex].answers.map(({ text, hasUserChecked, isCorrectAnswer }, index) => (
 											<button
-												key={answer.text}
+												key={text}
 												className={styles.answersWrapper__answer}
-												data-selected={answer.hasUserChecked ? 'true' : ''}
-												data-correct={questionsData[questionIndex].hasUserAnswered ? answer.isCorrectAnswer : ''}
+												data-selected={hasUserChecked ? 'true' : ''}
+												data-correct={questionsData[questionIndex].hasUserAnswered ? isCorrectAnswer : ''}
 												onClick={() => highlightClickedAnswer(index)}
 												type='button'>
 												<img
-													data-visible={
-														answer.hasUserChecked && questionsData[questionIndex].hasUserAnswered ? 'true' : ''
-													}
+													data-visible={hasUserChecked && questionsData[questionIndex].hasUserAnswered ? 'true' : ''}
 													className={styles.answersWrapper__answerIcon}
-													src={answer.isCorrectAnswer ? '/src/assets/icons/check.svg' : '/src/assets/icons/x.svg'}
+													src={isCorrectAnswer ? '/src/assets/icons/check.svg' : '/src/assets/icons/x.svg'}
 													alt=''
 												/>
-												<span>{answer.text}</span>
+												<span>{text}</span>
 											</button>
 										))}
 									</div>

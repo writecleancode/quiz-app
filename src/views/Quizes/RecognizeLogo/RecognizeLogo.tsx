@@ -67,16 +67,14 @@ export const RecognizeLogo = () => {
 						<div className={styles.questionWrapper}>
 							<p className={styles.questionWrapper__question}>To logo należy do:</p>
 							<div className={styles.answersWrapper}>
-								{questionsData[questionIndex].answers.map(answer => (
+								{questionsData[questionIndex].answers.map(({ text, isCorrectAnswer }) => (
 									<button
-										key={answer.text}
+										key={text}
 										className={styles.answersWrapper__answer}
-										data-correct={
-											givenAnswersIndexes.includes(questionIndex) || isQuizFinished ? answer.isCorrectAnswer : ''
-										}
-										onClick={() => handleAnswersStatus(answer.isCorrectAnswer)}
+										data-correct={givenAnswersIndexes.includes(questionIndex) || isQuizFinished ? isCorrectAnswer : ''}
+										onClick={() => handleAnswersStatus(isCorrectAnswer)}
 										type='button'>
-										{answer.text}
+										{text}
 									</button>
 								))}
 							</div>
