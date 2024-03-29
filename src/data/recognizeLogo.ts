@@ -66,23 +66,23 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/adidas_logo.jpg',
-		imageAlt: 'logo Adidas',
+		imageURL: '/src/assets/img/quiz2/instagram_logo.png',
+		imageAlt: 'logo Instagram',
 		answers: [
 			{
-				text: '4F',
+				text: 'Aparacik',
 				isCorrectAnswer: false,
 			},
 			{
-				text: 'Adidas',
+				text: 'Instagram',
 				isCorrectAnswer: true,
 			},
 			{
-				text: 'Nike',
+				text: 'Kilogram',
 				isCorrectAnswer: false,
 			},
 			{
-				text: 'Puma',
+				text: 'Photogram',
 				isCorrectAnswer: false,
 			},
 		],
