@@ -32,6 +32,8 @@ The app has it's own favicon. ⚡
 
 Lines of code rewritten from tutorials: 0 ✔
 
+The layout was designed by me in Figma. 🖍
+
 All photos have been cropped and their size has been reduced accordingly (to minimize file size). ✂📐
 
 
