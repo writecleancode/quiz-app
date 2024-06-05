@@ -1,4 +1,4 @@
-# Where2Eat
+# Quiz App
 
 🌐 [LIVE DEMO](https://writecleancode.github.io/quiz-app/)
 
@@ -92,12 +92,12 @@ npm run dev
 ## APPLICATION VIEW
 
 ![app_preview1](https://github.com/writecleancode/quiz-app/assets/143826285/0a4d708e-cc23-49e8-95b7-b3b7fea9bbfc)
----
----
+***
+***
 ![app_preview2](https://github.com/writecleancode/quiz-app/assets/143826285/0207aafb-f250-49a8-bee6-fa5cd69e3793)
----
----
+***
+***
 ![app_preview3](https://github.com/writecleancode/quiz-app/assets/143826285/57380988-f700-4ad4-aa89-f72c8d8e9b9e)
----
----
+***
+***
 ![app_preview4](https://github.com/writecleancode/quiz-app/assets/143826285/7545c569-bc94-41c1-b2f5-c73102754aed)
