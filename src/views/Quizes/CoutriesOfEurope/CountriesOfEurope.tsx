@@ -6,6 +6,7 @@ import { QuizWrapper } from 'src/components/templates/QuizWrapper/QuizWrapper';
 import { QuizHeader } from 'src/components/molecules/QuizHeader/QuizHeader';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
+import { basePath } from 'src/utils/base-path';
 import styles from './CountriesOfEurope.module.scss';
 
 type countryType = {
@@ -116,10 +117,7 @@ export const CountriesOfEurope = () => {
 		<>
 			{countriesList.length ? (
 				<QuizWrapper>
-					<QuizHeader
-						title={quizzes[0].title}
-						description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut'
-					/>
+					<QuizHeader title={quizzes[0].title} description='wymień jak najwięcej krajów leżących na terenie Europy w ciągu 2 minut' />
 					<div className={styles.controlsWrapper}>
 						{hasQuizStarted ? (
 							<div className={styles.formWrapper}>
@@ -168,33 +166,24 @@ export const CountriesOfEurope = () => {
 					</div>
 					<div className={styles.helpersWrapper}>
 						<div>
-							<button
-								className={styles.toggleMapDisplayButton}
-								onClick={() => setMapDisplay(prevState => !prevState)}
-								type='button'>
-								<img src='/src/assets/icons/map.svg' alt='' />
+							<button className={styles.toggleMapDisplayButton} onClick={() => setMapDisplay(prevState => !prevState)} type='button'>
+								<img src={`${basePath}/icons/map.svg`} alt='' />
 								<span>Pokaż mapę pomocniczą</span>
 							</button>
-							{isMapDisplayed ? (
-								<img className={styles.mapImg} src='/src/assets/img/quiz1/europe_map.jpg' alt='mapa Europy' />
-							) : null}
+							{isMapDisplayed ? <img className={styles.mapImg} src={`${basePath}/img/quiz1/europe_map.jpg`} alt='mapa Europy' /> : null}
 						</div>
 						<div className={styles.resultsWrapper}>
 							<div className={styles.resultsWrapper__column}>
 								{coutriesToDisplay.firstHalf.map(({ name, isGuessed }) => (
 									<p key={name} className={styles.result}>
-										<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
-											{name}
-										</span>
+										<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>{name}</span>
 									</p>
 								))}
 							</div>
 							<div className={styles.resultsWrapper__column}>
 								{coutriesToDisplay.secondHalf.map(({ name, isGuessed }) => (
 									<p key={name} className={styles.result}>
-										<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>
-											{name}
-										</span>
+										<span className={isGuessed ? styles.guessed : secondsTotal > 0 ? styles.hidden : styles.notGuessed}>{name}</span>
 									</p>
 								))}
 							</div>
@@ -204,12 +193,7 @@ export const CountriesOfEurope = () => {
 			) : (
 				<LoadingGif />
 			)}
-			<ScoreModal
-				isOpen={isModalOpen}
-				userScore={guessedCoutriesNumber}
-				totalScore={coutriesNumber}
-				handleCloseModal={handleCloseModal}
-			/>
+			<ScoreModal isOpen={isModalOpen} userScore={guessedCoutriesNumber} totalScore={coutriesNumber} handleCloseModal={handleCloseModal} />
 		</>
 	);
 };

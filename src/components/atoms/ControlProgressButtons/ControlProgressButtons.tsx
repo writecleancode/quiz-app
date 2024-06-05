@@ -1,3 +1,4 @@
+import { basePath } from 'src/utils/base-path';
 import styles from './ControlProgressButtons.module.scss';
 
 type ControlProgressButtonsProps = {
@@ -24,7 +25,7 @@ export const ControlProgressButtons = ({
 				onClick={() => handleChangeQuestion('previous')}
 				disabled={isFirstQuestion ? true : false}
 				type='button'>
-				<img src='/src/assets/icons/caret-left-fill.svg' alt='' />
+				<img src={`${basePath}/icons/caret-left-fill.svg`} alt='' />
 				<span>{previousButton}</span>
 			</button>
 
@@ -39,7 +40,7 @@ export const ControlProgressButtons = ({
 					data-last={isLastQuestion ? 'true' : 'false'}
 					type='button'>
 					<span>{isLastQuestion ? 'Zakończ Quiz' : nextButton}</span>
-					{isLastQuestion ? null : <img src='/src/assets/icons/caret-right-fill.svg' alt='' />}
+					{isLastQuestion ? null : <img src={`${basePath}/icons/caret-right-fill.svg`} alt='' />}
 				</button>
 			)}
 		</>

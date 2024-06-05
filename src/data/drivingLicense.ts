@@ -1,7 +1,7 @@
 export const questionsData = [
 	{
 		title: 'Za tym znakiem dozwolone jest:',
-		imageURL: '/src/assets/img/quiz4/question1.jpg',
+		imageURL: 'img/quiz4/question1.jpg',
 		imageAlt: 'znak D-4a - droga bez przejazdu (potocznie "ślepa uliczka")',
 		hasUserAnswered: false,
 		answers: [
@@ -24,7 +24,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Za tym znakiem można poruszać się z prędkością:',
-		imageURL: '/src/assets/img/quiz4/question2.jpg',
+		imageURL: 'img/quiz4/question2.jpg',
 		imageAlt: 'znak D-9 - autostrada',
 		hasUserAnswered: false,
 		answers: [
@@ -47,7 +47,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Za tym znakiem można:',
-		imageURL: '/src/assets/img/quiz4/question3.jpg',
+		imageURL: 'img/quiz4/question3.jpg',
 		imageAlt: 'znak B-21 - Zakaz skręcania w lewo',
 		hasUserAnswered: false,
 		answers: [
@@ -70,7 +70,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Za tym znakiem niedozwolone jest:',
-		imageURL: '/src/assets/img/quiz4/question4.jpg',
+		imageURL: 'img/quiz4/question4.jpg',
 		imageAlt: 'znak D-7 - droga ekspresowa',
 		hasUserAnswered: false,
 		answers: [
@@ -93,7 +93,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Na terenie strefy oznaczonej tym znakiem:',
-		imageURL: '/src/assets/img/quiz4/question5.jpg',
+		imageURL: 'img/quiz4/question5.jpg',
 		imageAlt: 'znak D40 - strefa zamieszkania',
 		hasUserAnswered: false,
 		answers: [
@@ -116,7 +116,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Znak ten obowiązuje do:',
-		imageURL: '/src/assets/img/quiz4/question6.jpg',
+		imageURL: 'img/quiz4/question6.jpg',
 		imageAlt: 'znak B-33 - ograniczenie prędkości',
 		hasUserAnswered: false,
 		answers: [
@@ -139,7 +139,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Jadąc we mgle o widoczności na odległość ~100m należy:',
-		imageURL: '/src/assets/img/quiz4/question7.jpg',
+		imageURL: 'img/quiz4/question7.jpg',
 		imageAlt: 'samochody jadące we mgle',
 		hasUserAnswered: false,
 		answers: [
@@ -162,7 +162,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Za tym znakiem można poruszać się:',
-		imageURL: '/src/assets/img/quiz4/question8.jpg',
+		imageURL: 'img/quiz4/question8.jpg',
 		imageAlt: 'znak B-3 - Zakaz wjazdu pojazdów silnikowych, z wyjątkiem motocykli jednośladowych',
 		hasUserAnswered: false,
 		answers: [
@@ -185,7 +185,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Obowiązkowym wyposażeniem samochodu jest:',
-		imageURL: '/src/assets/img/quiz4/question9.jpg',
+		imageURL: 'img/quiz4/question9.jpg',
 		imageAlt:
 			'leżące obok siebie apteczka, gaśnica, trójkąt ostrzegawczy, kamizelka odblaskowa, pas zaciskowy, kable rozruchowe, koło zapasowe',
 		hasUserAnswered: false,
@@ -209,7 +209,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Jakie zakazy lub ograniczenia odwołuje ten znak',
-		imageURL: '/src/assets/img/quiz4/question10.jpg',
+		imageURL: 'img/quiz4/question10.jpg',
 		imageAlt: 'znak B-42 - koniec zakazów',
 		hasUserAnswered: false,
 		answers: [

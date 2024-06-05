@@ -8,6 +8,7 @@ import { QuizProgress } from 'src/components/atoms/QuizProgress/QuizProgress';
 import { ControlProgressButtons } from 'src/components/atoms/ControlProgressButtons/ControlProgressButtons';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
+import { basePath } from 'src/utils/base-path';
 import styles from './RecognizeLogo.module.scss';
 
 const maxScore = quizData.length;
@@ -75,7 +76,7 @@ export const RecognizeLogo = () => {
 						<div className={styles.pictureWrapper}>
 							<img
 								className={styles.pictureWrapper__picture}
-								src={questionsData[questionIndex].imageURL}
+								src={`${basePath}/${questionsData[questionIndex].imageURL}`}
 								alt={questionsData[questionIndex].imageAlt}
 							/>
 						</div>
@@ -87,9 +88,7 @@ export const RecognizeLogo = () => {
 										<button
 											key={text}
 											className={styles.answersWrapper__answer}
-											data-correct={
-												givenAnswersIndexes.includes(questionIndex) || isQuizFinished ? isCorrectAnswer : ''
-											}
+											data-correct={givenAnswersIndexes.includes(questionIndex) || isQuizFinished ? isCorrectAnswer : ''}
 											onClick={() => handleAnswersStatus(isCorrectAnswer)}
 											type='button'>
 											{text}
@@ -112,12 +111,7 @@ export const RecognizeLogo = () => {
 			) : (
 				<LoadingGif />
 			)}
-			<ScoreModal
-				isOpen={isModalOpen}
-				userScore={userScore}
-				totalScore={maxScore}
-				handleCloseModal={handleCloseModal}
-			/>
+			<ScoreModal isOpen={isModalOpen} userScore={userScore} totalScore={maxScore} handleCloseModal={handleCloseModal} />
 		</>
 	);
 };

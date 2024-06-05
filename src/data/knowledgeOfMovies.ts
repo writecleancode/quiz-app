@@ -1,7 +1,7 @@
 export const questionsData = [
 	{
 		title: 'Iron Man',
-		imageURL: '/src/assets/img/quiz3/iron_man.jpg',
+		imageURL: 'img/quiz3/iron_man.jpg',
 		hasUserAnswered: false,
 		answersData: [
 			{
@@ -48,7 +48,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Harry Potter',
-		imageURL: '/src/assets/img/quiz3/harry_potter.jpg',
+		imageURL: 'img/quiz3/harry_potter.jpg',
 		hasUserAnswered: false,
 		answersData: [
 			{
@@ -95,7 +95,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Shrek',
-		imageURL: '/src/assets/img/quiz3/shrek.jpg',
+		imageURL: 'img/quiz3/shrek.jpg',
 		hasUserAnswered: false,
 		answersData: [
 			{
@@ -151,7 +151,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Władca Pierścieni',
-		imageURL: '/src/assets/img/quiz3/the_lord_of_the_rings.jpg',
+		imageURL: 'img/quiz3/the_lord_of_the_rings.jpg',
 		hasUserAnswered: false,
 		answersData: [
 			{
@@ -198,7 +198,7 @@ export const questionsData = [
 	},
 	{
 		title: 'Gwiezdne Wojny',
-		imageURL: '/src/assets/img/quiz3/star_wars.jpg',
+		imageURL: 'img/quiz3/star_wars.jpg',
 		hasUserAnswered: false,
 		answersData: [
 			{

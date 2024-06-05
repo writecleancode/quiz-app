@@ -8,6 +8,7 @@ import { QuizProgress } from 'src/components/atoms/QuizProgress/QuizProgress';
 import { ControlProgressButtons } from 'src/components/atoms/ControlProgressButtons/ControlProgressButtons';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
+import { basePath } from 'src/utils/base-path';
 import styles from './DrivingLicense.module.scss';
 
 type questionsDataType = {
@@ -97,7 +98,7 @@ export const DrivingLicense = () => {
 							<div className={styles.pictureWrapper}>
 								<img
 									className={styles.pictureWrapper__picture}
-									src={questionsData[questionIndex].imageURL}
+									src={`${basePath}/${questionsData[questionIndex].imageURL}`}
 									alt={questionsData[questionIndex].imageAlt}
 								/>
 							</div>
@@ -116,7 +117,7 @@ export const DrivingLicense = () => {
 												<img
 													data-visible={hasUserChecked && questionsData[questionIndex].hasUserAnswered ? 'true' : ''}
 													className={styles.answersWrapper__answerIcon}
-													src={isCorrectAnswer ? '/src/assets/icons/check.svg' : '/src/assets/icons/x.svg'}
+													src={isCorrectAnswer ? `${basePath}/icons/check.svg` : `${basePath}/icons/x.svg`}
 													alt=''
 												/>
 												<span>{text}</span>
@@ -125,8 +126,7 @@ export const DrivingLicense = () => {
 									</div>
 								</div>
 								<p className={styles.instructionText}>
-									test wielokrotnego wyboru - zaznacz <span className={styles.textBold}>wszystkie poprawne</span>{' '}
-									odpowiedzi
+									test wielokrotnego wyboru - zaznacz <span className={styles.textBold}>wszystkie poprawne</span> odpowiedzi
 								</p>
 								<div className={styles.buttonsWrapper}>
 									<ControlProgressButtons
@@ -145,12 +145,7 @@ export const DrivingLicense = () => {
 			) : (
 				<LoadingGif />
 			)}
-			<ScoreModal
-				isOpen={isModalOpen}
-				userScore={userScore}
-				totalScore={maxScore}
-				handleCloseModal={handleCloseModal}
-			/>
+			<ScoreModal isOpen={isModalOpen} userScore={userScore} totalScore={maxScore} handleCloseModal={handleCloseModal} />
 		</>
 	);
 };

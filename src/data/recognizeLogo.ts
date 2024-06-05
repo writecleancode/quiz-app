@@ -1,6 +1,6 @@
 export const questionsData = [
 	{
-		imageURL: '/src/assets/img/quiz2/adidas_logo.jpg',
+		imageURL: 'img/quiz2/adidas_logo.jpg',
 		imageAlt: 'logo Adidas',
 		answers: [
 			{
@@ -22,7 +22,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/apple_logo.jpg',
+		imageURL: 'img/quiz2/apple_logo.jpg',
 		imageAlt: 'logo Apple',
 		answers: [
 			{
@@ -44,7 +44,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/playboy_logo.jpg',
+		imageURL: 'img/quiz2/playboy_logo.jpg',
 		imageAlt: 'logo Playboy',
 		answers: [
 			{
@@ -66,7 +66,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/instagram_logo.png',
+		imageURL: 'img/quiz2/instagram_logo.png',
 		imageAlt: 'logo Instagram',
 		answers: [
 			{
@@ -88,7 +88,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/starbucks_logo.jpg',
+		imageURL: 'img/quiz2/starbucks_logo.jpg',
 		imageAlt: 'logo Starbucks',
 		answers: [
 			{
@@ -110,7 +110,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/redbull_logo.png',
+		imageURL: 'img/quiz2/redbull_logo.png',
 		imageAlt: 'logo Red Bull',
 		answers: [
 			{
@@ -132,7 +132,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/twitter_logo.jpg',
+		imageURL: 'img/quiz2/twitter_logo.jpg',
 		imageAlt: 'logo Twitter',
 		answers: [
 			{
@@ -154,7 +154,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/volkswagen_logo.png',
+		imageURL: 'img/quiz2/volkswagen_logo.png',
 		imageAlt: 'logo Volkswagen',
 		answers: [
 			{
@@ -176,7 +176,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/visa_logo.jpg',
+		imageURL: 'img/quiz2/visa_logo.jpg',
 		imageAlt: 'logo Visa',
 		answers: [
 			{
@@ -198,7 +198,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/ing_logo.jpg',
+		imageURL: 'img/quiz2/ing_logo.jpg',
 		imageAlt: 'logo ING',
 		answers: [
 			{
@@ -220,7 +220,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/lg_logo.png',
+		imageURL: 'img/quiz2/lg_logo.png',
 		imageAlt: 'logo LG',
 		answers: [
 			{
@@ -242,7 +242,7 @@ export const questionsData = [
 		],
 	},
 	{
-		imageURL: '/src/assets/img/quiz2/toyota_logo.jpg',
+		imageURL: 'img/quiz2/toyota_logo.jpg',
 		imageAlt: 'logo Toyota',
 		answers: [
 			{

@@ -8,6 +8,7 @@ import { QuizProgress } from 'src/components/atoms/QuizProgress/QuizProgress';
 import { ControlProgressButtons } from 'src/components/atoms/ControlProgressButtons/ControlProgressButtons';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { ScoreModal } from 'src/components/molecules/ScoreModal/ScoreModal';
+import { basePath } from 'src/utils/base-path';
 import styles from './KnowledgeOfMovies.module.scss';
 
 type questionsDataType = {
@@ -123,7 +124,7 @@ export const KnowledgeOfMovies = () => {
 						<div className={styles.pictureWrapper}>
 							<img
 								className={styles.pictureWrapper__picture}
-								src={questionsData[questionIndex].imageURL}
+								src={`${basePath}/${questionsData[questionIndex].imageURL}`}
 								alt={`okładka fimlu ${questionsData[questionIndex].title}`}
 							/>
 						</div>
@@ -139,14 +140,8 @@ export const KnowledgeOfMovies = () => {
 												<input
 													className={styles.textWrapper__answerInput}
 													name={id}
-													data-status={
-														hasUserGuessed ? 'guessed' : questionsData[questionIndex].hasUserAnswered ? 'failed' : ''
-													}
-													value={
-														hasUserGuessed || questionsData[questionIndex].hasUserAnswered
-															? correntAnswer
-															: inputValues.id
-													}
+													data-status={hasUserGuessed ? 'guessed' : questionsData[questionIndex].hasUserAnswered ? 'failed' : ''}
+													value={hasUserGuessed || questionsData[questionIndex].hasUserAnswered ? correntAnswer : inputValues.id}
 													onChange={e => handleInputChange(e, { id, acceptableAnswers }, index)}
 													disabled={hasUserGuessed || questionsData[questionIndex].hasUserAnswered ? true : false}
 												/>
@@ -172,12 +167,7 @@ export const KnowledgeOfMovies = () => {
 			) : (
 				<LoadingGif />
 			)}
-			<ScoreModal
-				isOpen={isModalOpen}
-				userScore={userScore}
-				totalScore={maxScore}
-				handleCloseModal={handleCloseModal}
-			/>
+			<ScoreModal isOpen={isModalOpen} userScore={userScore} totalScore={maxScore} handleCloseModal={handleCloseModal} />
 		</>
 	);
 };

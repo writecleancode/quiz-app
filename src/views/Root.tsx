@@ -4,16 +4,17 @@ import { CountriesOfEurope } from './Quizes/CoutriesOfEurope/CountriesOfEurope';
 import { RecognizeLogo } from './Quizes/RecognizeLogo/RecognizeLogo';
 import { KnowledgeOfMovies } from './Quizes/KnowledgeOfMovies/KnowledgeOfMovies';
 import { DrivingLicense } from './Quizes/DrivingLicese/DrivingLicense';
+import { basePath } from 'src/utils/base-path';
 
 export const Root = () => {
 	return (
 		<Router>
 			<Routes>
-				<Route path='/' element={<MainView />} />
-				<Route path='/quiz/panstwa-europy' element={<CountriesOfEurope />} />
-				<Route path='/quiz/rozpoznaj-logo' element={<RecognizeLogo />} />
-				<Route path='/quiz/znajomosc-filmow' element={<KnowledgeOfMovies />} />
-				<Route path='/quiz/prawo-jazdy' element={<DrivingLicense />} />
+				<Route path={`${basePath}/`} element={<MainView />} />
+				<Route path={`${basePath}/quiz/panstwa-europy`} element={<CountriesOfEurope />} />
+				<Route path={`${basePath}/quiz/rozpoznaj-logo`} element={<RecognizeLogo />} />
+				<Route path={`${basePath}/quiz/znajomosc-filmow`} element={<KnowledgeOfMovies />} />
+				<Route path={`${basePath}/quiz/prawo-jazdy`} element={<DrivingLicense />} />
 			</Routes>
 		</Router>
 	);
