@@ -24,17 +24,17 @@ Quiz App - **relax** between checking dozens (hundreds?) of CVs. **4 different q
 
 The application was intended to be something other than just a simple project for recruiters to click through. The idea was for it to be a “springboard,” a little entertainment, a form of relaxation.
 
-The app was written based on a mobile-first approach and it's fully responsive. 📱💻🖥
+The app was written based on a mobile-first approach and it's fully responsive 📱💻🖥
 
-Accessibility is at a high level. ♿
+Accessibility is at a high level ♿
 
-The app has it's own favicon. ⚡
+The app has it's own favicon ⚡
 
 Lines of code rewritten from tutorials: 0 ✔
 
-The layout was designed by me in Figma. 🖍
+The layout was designed by me in Figma 🖍
 
-All photos have been cropped and their size has been reduced accordingly (to minimize file size). ✂📐
+All photos have been cropped and their size has been reduced accordingly (to minimize file size) ✂📐
 
 
 
