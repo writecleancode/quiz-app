@@ -1,6 +1,6 @@
 # Quiz App
 
-🌐 [LIVE DEMO](https://writecleancode.github.io/quiz-app/)
+🌐 [**LIVE DEMO**](https://writecleancode.github.io/quiz-app/)
 
 
 
@@ -34,11 +34,35 @@ Lines of code rewritten from tutorials: 0 ✔
 
 The layout was designed by me in Figma 🖍
 
-All photos have been cropped and their size has been reduced accordingly (to minimize file size) ✂📐
+All photos have been cropped and their size has been reduced accordingly (to minimize file size) 🖼✂
 
 
 
 ## TECHNOLOGIES
+
+1. Vite
+
+2. Typescript
+
+3. React
+
+    - React Router
+
+    - React Modal
+
+    - SCSS Modules
+
+4. Figma
+
+---
+
+More accurate informations about technologies used
+
+Build tool:
+- **Vite**
+
+Language:
+- **Typescript**
 
 Framework:
 - **React**
@@ -53,15 +77,14 @@ React libraries used:
 Styles:
 - **SCSS Modules**
 
-Language:
-- **Typescript**
-
-Build tool:
-- **Vite**
-
 Components structure:
 - **Atomic Design**
 
+Designed with:
+- **Figma**
+
+Images editing:
+- **GIMP**
 
 
 ## SETUP
