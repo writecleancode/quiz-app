@@ -22,7 +22,7 @@
 
     "baseUrl": "./"
   },
-  "include": ["src"],
+  "include": ["src", "../quiz-app-vue/src/composables"],
   "references": [{
     "path": "./tsconfig.node.json"
   }]

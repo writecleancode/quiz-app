@@ -1,4 +1,4 @@
-# Quiz App
+# ![My Skills](https://skillicons.dev/icons?i=react) Quiz App (React)
 
 🌐 [**LIVE DEMO**](https://writecleancode.github.io/quiz-app/)
 
@@ -23,6 +23,8 @@ Quiz App - **relax** between checking dozens (hundreds?) of CVs. **4 different q
 ## GENERAL INFO
 
 The application was intended to be something other than just a simple project for recruiters to click through. The idea was for it to be a “springboard,” a little entertainment, a form of relaxation.
+
+[Click to see repo of this app written with **Vue**](https://github.com/writecleancode/quiz-app-vue)
 
 The app was written based on a mobile-first approach and it's fully responsive 📱💻🖥
 

@@ -29,8 +29,8 @@ export const DrivingLicense = () => {
 	const [questionsData, setQuestionsData] = useState<never[] | questionsDataType>([]);
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [userScore, setUserScore] = useState(0);
-	const isFirstQuestion = questionIndex <= 0 ? true : false;
-	const isLastQuestion = questionIndex >= questionsData.length - 1 ? true : false;
+	const isFirstQuestion = questionIndex <= 0;
+	const isLastQuestion = questionIndex >= questionsData.length - 1;
 	const { isModalOpen, handleDisplayScore, handleCloseModal } = useModal();
 
 	const handleChangeQuestion = (direction: string) => {
@@ -91,7 +91,7 @@ export const DrivingLicense = () => {
 		<>
 			{questionsData.length ? (
 				<QuizWrapper>
-					<div className={styles.container}>
+					<div>
 						<QuizHeader title={quizzes[3].title} description={quizzes[3].description} />
 						<QuizProgress text={`${questionIndex + 1} / ${maxScore}`} />
 						<div className={styles.wrapper}>
